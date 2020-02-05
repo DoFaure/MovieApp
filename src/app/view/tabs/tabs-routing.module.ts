@@ -14,6 +14,15 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tabFilm/tabFilm.module').then(m => m.Tab1PageModule)
+          },
+          { 
+            path: 'list/:category', 
+            children: [
+              {
+                path: '',
+                loadChildren: '../filmList/filmList.module#filmListPageModule'
+              }
+            ]
           }
         ]
       },

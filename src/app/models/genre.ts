@@ -6,3 +6,4 @@ export interface Genre {
 export interface GenreResponse {
     genres: Genre[]
 }
+

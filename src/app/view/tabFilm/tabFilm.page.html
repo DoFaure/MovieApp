@@ -8,12 +8,13 @@
 
 
 <ion-content>
+  
   <ion-row no-padding no-margin>
 
     <ion-card mode="ios" class="popular-movies" no-padding no-margin>
 
       <ion-card-header class="header-card-movies">
-        <button ion-button icon-only>
+        <button ion-button icon-only [routerLink]="['/tabs/film/list/', 'nowPlaying']">
           <ion-card-subtitle>
             
               Au cinéma en ce moment
@@ -41,7 +42,7 @@
     <ion-card mode="ios" class="popular-movies" no-padding no-margin>
 
       <ion-card-header class="header-card-movies">
-        <button ion-button icon-only>
+        <button ion-button icon-only  [routerLink]="['/tabs/film/list/', 'popular']">
           <ion-card-subtitle>
             
               Films tendance
@@ -69,7 +70,7 @@
     <ion-card mode="ios" class="best-movies" no-padding no-margin>
 
       <ion-card-header class="header-card-movies">
-        <button ion-button icon-only>
+        <button ion-button icon-only  [routerLink]="['/tabs/film/list/', 'topRated']">
           <ion-card-subtitle>
             
               Films les mieux notés
@@ -96,7 +97,7 @@
     <ion-card mode="ios" class="upcoming-movies" no-padding no-margin>
 
       <ion-card-header class="header-card-movies" >
-        <button ion-button icon-only>
+        <button ion-button icon-only  [routerLink]="['/tabs/film/list/', 'upcoming']">
           <ion-card-subtitle>
             
               Bientôt au cinéma
