@@ -1,0 +1,53 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+ion-icon {
+
+  // background: url('../../assets/images/logo_movies.png') no-repeat right center;
+  background-size: 2%;
+}
+
+ion-card{
+  box-shadow: none !important;
+}
+
+img {
+  height: auto;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  
+
+  .movie {
+    display: inline-block;
+    width: 50%;    
+  }
+}
+
+.header-card-movies {
+  button{
+  border: none;
+  background: none;
+  position: relative;
+  width: 100%;
+  top:1px;
+  right: 1px;
+  ion-card-subtitle{
+    float:left;
+    zoom:1.3;
+  }
+  } 
+}
+
+#list{
+  float: right;
+  color: purple !important;
+  zoom:1.5;
+}
