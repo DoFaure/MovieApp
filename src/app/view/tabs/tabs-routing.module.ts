@@ -20,7 +20,7 @@ const routes: Routes = [
             children: [
               {
                 path: '',
-                loadChildren: '../filmList/filmList.module#filmListPageModule'
+                loadChildren: 'src/app/view/filmList/filmList.module#filmListPageModule'
               }
             ]
           }
