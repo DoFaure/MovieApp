@@ -23,7 +23,16 @@ const routes: Routes = [
                 loadChildren: 'src/app/view/filmList/filmList.module#filmListPageModule'
               }
             ]
-          }
+          },
+          { 
+            path: 'film-detail/:movieID', 
+            children: [
+              {
+                path: '',
+                loadChildren: '../filmDetail/filmDetail.module#filmDetailPageModule'
+              },
+            ]
+          },
         ]
       },
       {
