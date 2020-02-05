@@ -12,9 +12,9 @@
   <loading-icon *ngIf="!isDataLoaded"></loading-icon>
   
   <div class="movie-poster-card">
-    <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" *ngFor="let movie of movieList" />
+    <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" *ngFor="let movie of movieList" 
+    [routerLink]="['/tabs/film/film-detail/', movie.id]"/>
   </div> 
-  <!-- [routerLink]="['/tabs/home/movie-detail/', movie.id]"  -->
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreMovies()">
     <ion-infinite-scroll-content

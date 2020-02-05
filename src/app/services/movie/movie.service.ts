@@ -6,9 +6,9 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 /* Models */
-import { Movie, MovieStates, MovieResponse } from 'src/app/models/movie';
+import { Movie, MovieResponse } from 'src/app/models/movie';
 // import { TrailerResponse } from 'src/app/models/trailer';
-// import { Cast, CastResponse } from 'src/app/models/cast';
+import { Cast, CreditResponse } from 'src/app/models/credit';
 
 /* Services */
 // import { AuthService } from '../auth/auth.service';
@@ -26,6 +26,7 @@ export class MovieService {
 
   getLatestMovies(pageNumber: number): Observable<Movie[]> {
     var queryParams = {
+      language: "fr",
       page: pageNumber.toString()
     }
     return this.http.get("/movie/latest", { params: queryParams }).pipe(
@@ -38,6 +39,7 @@ export class MovieService {
 
   getPopularMovies(pageNumber: number): Observable<Movie[]> {
     var queryParams = {
+      language: "fr",
       region : "fr",
       page: pageNumber.toString()
     }
@@ -50,10 +52,10 @@ export class MovieService {
 
   getTopRatedMovies(pageNumber: number): Observable<Movie[]> {
     var queryParams = {
+      language: "fr",
       region : "fr",
       page: pageNumber.toString()
     }
-
     return this.http.get("/movie/top_rated", { params: queryParams }).pipe(
       map((response: MovieResponse) => {
         return response.results;
@@ -63,11 +65,11 @@ export class MovieService {
 
   getTopUpcomingMovies(pageNumber: number): Observable<Movie[]> {
     var queryParams = {
+      language: "fr",
       region : "fr",
       page: pageNumber.toString(),
       
     }
-
     return this.http.get("/movie/upcoming", { params: queryParams }).pipe(
       map((response: MovieResponse) => {
         return response.results;
@@ -77,10 +79,10 @@ export class MovieService {
 
   getTopNowPlayingMovies(pageNumber: number): Observable<Movie[]> {
     var queryParams = {
+      language: "fr",
       region: "fr",
       page: pageNumber.toString()
     }
-
     return this.http.get("/movie/now_playing", { params: queryParams }).pipe(
       map((response: MovieResponse) => {
         return response.results;
@@ -106,25 +108,31 @@ export class MovieService {
   }
 
   getMovieDetail(movieID: string): Observable<Movie> {
-    return this.http.get("/movie/" + movieID).pipe(
+    var queryParams: any = {
+      language: "fr",
+    }
+    return this.http.get("/movie/" + movieID, {params: queryParams}).pipe(
       map((response: Movie) => {
         return response;
       })
     );
   }
 
-//   getMovieCast(movieID: string): Observable<Cast[]> {
-//     let url = '/movie/' + movieID + '/credits';
-//     return this.http.get(url).pipe(
-//       map((response: CastResponse) => {
-//         return response.cast;
-//       })
-//     );
-//   }
+  getMovieCredit(movieID: string): Observable<Cast[]> {
+    let url = '/movie/' + movieID + '/credits';
+    return this.http.get(url).pipe(
+      map((response: CreditResponse) => {
+        return response.cast;
+      })
+    );
+  }
 
   getSimilarMovies(movieID: string): Observable<Movie[]> {
+    var queryParams: any = {
+      language: "fr",
+    }
     let url = '/movie/' + movieID + '/similar';
-    return this.http.get(url).pipe(
+    return this.http.get(url, { params: queryParams }).pipe(
       map((response: MovieResponse) => {
         return response.results;
       })

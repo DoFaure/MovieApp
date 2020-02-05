@@ -27,7 +27,8 @@
       <ion-card-content>
         <div class="scrolling-wrapper" >
           <div class="movie" *ngFor="let movie of nowPlayingMovieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" />  
+            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'"
+            [routerLink]="['/tabs/film/film-detail/', movie.id]" />  
           </div>
        </div>
       </ion-card-content>
@@ -55,7 +56,8 @@
       <ion-card-content>
         <div class="scrolling-wrapper" >
           <div class="movie" *ngFor="let movie of popularMovieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" />  
+            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'"
+            [routerLink]="['/tabs/film/film-detail/', movie.id]"  />  
           </div>
        </div>
       </ion-card-content>
@@ -83,7 +85,8 @@
       <ion-card-content>
         <div class="scrolling-wrapper" >
           <div class="movie" *ngFor="let movie of bestMovieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" />  
+            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" 
+            [routerLink]="['/tabs/film/film-detail/', movie.id]" />  
           </div>
        </div>
       </ion-card-content>
@@ -110,7 +113,8 @@
       <ion-card-content>
         <div class="scrolling-wrapper" >
           <div class="movie" *ngFor="let movie of upcomingMovieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" />  
+            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'"
+            [routerLink]="['/tabs/film/film-detail/', movie.id]"  />  
           </div>
        </div>
       </ion-card-content>
