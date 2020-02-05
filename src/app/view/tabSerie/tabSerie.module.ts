@@ -14,4 +14,4 @@ import { TabSerie } from './tabSerie.page';
   ],
   declarations: [TabSerie]
 })
-export class Tab2PageModule {}
+export class TabSeriePageModule {}

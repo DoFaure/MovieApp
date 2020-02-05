@@ -13,7 +13,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tabFilm/tabFilm.module').then(m => m.Tab1PageModule)
+              import('../tabFilm/tabFilm.module').then(m => m.TabFilmPageModule)
           },
           { 
             path: 'list/:category', 
@@ -29,24 +29,24 @@ const routes: Routes = [
             children: [
               {
                 path: '',
-                loadChildren: '../filmDetail/filmDetail.module#filmDetailPageModule'
+                loadChildren: 'src/app/view/filmDetail/filmDetail.module#filmDetailPageModule'
               },
             ]
           },
         ]
       },
       {
-        path: 'tab2',
+        path: 'serie',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tabSerie/tabSerie.module').then(m => m.Tab2PageModule)
+              import('../tabSerie/tabSerie.module').then(m => m.TabSeriePageModule)
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'search',
         children: [
           {
             path: '',
@@ -56,7 +56,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab4',
+        path: 'list',
         children: [
           {
             path: '',
@@ -66,7 +66,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab5',
+        path: 'profil',
         children: [
           {
             path: '',

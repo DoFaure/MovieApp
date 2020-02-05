@@ -18,4 +18,4 @@ import { ComponentsModule } from '../../components/components.module';
   ],
   declarations: [TabFilm]
 })
-export class Tab1PageModule {}
+export class TabFilmPageModule {}
