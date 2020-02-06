@@ -20,7 +20,8 @@ const routes: Routes = [
             children: [
               {
                 path: '',
-                loadChildren: 'src/app/view/filmList/filmList.module#filmListPageModule'
+                loadChildren: () =>
+                import('../filmList/filmList.module').then(m => m.filmListPageModule)
               }
             ]
           },
@@ -29,7 +30,8 @@ const routes: Routes = [
             children: [
               {
                 path: '',
-                loadChildren: 'src/app/view/filmDetail/filmDetail.module#filmDetailPageModule'
+                loadChildren: () =>
+                import('../filmDetail/filmDetail.module').then(m => m.filmDetailPageModule)
               },
             ]
           },
