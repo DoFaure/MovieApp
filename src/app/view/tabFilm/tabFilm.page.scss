@@ -29,10 +29,16 @@ img {
   overflow-y: hidden;
   white-space: nowrap;
   
-
   .movie {
     display: inline-block;
-    width: 50%;    
+    // width: 50%;   
+    width: 175px;
+    height: 250px;
+      
+      img {
+          width: 175px;
+          height: 250px;
+      }
   }
 }
 

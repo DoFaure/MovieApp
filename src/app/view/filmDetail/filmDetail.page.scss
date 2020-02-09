@@ -2,6 +2,11 @@ ion-back-button{
     color: purple !important;
 }
 
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none;
+}
+
 // .content {
 //     color: white;
 //     padding-bottom: 20px;
@@ -76,6 +81,7 @@ ion-back-button{
     .movie-info {
         
         .movie-title {
+            margin-top: 5px;
             height: 20vw;
             padding-left: calc(31vw + 10px);
             padding-right: 10px;
@@ -117,73 +123,73 @@ ion-back-button{
 
         }
 
-        .movie-user-actions {
-            width: 100%;
-            height: 45px;
-            display: flex;
-            color: white;
-            font-size: 30px;
-            padding-left: 30px;
-            padding-right: 30px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            justify-content: space-between;
-            align-items: center;
+        // .movie-user-actions {
+        //     width: 100%;
+        //     height: 45px;
+        //     display: flex;
+        //     color: white;
+        //     font-size: 30px;
+        //     padding-left: 30px;
+        //     padding-right: 30px;
+        //     margin-top: 10px;
+        //     margin-bottom: 10px;
+        //     justify-content: space-between;
+        //     align-items: center;
             
-            ion-icon {
-                padding: 10px;
-            }
+        //     ion-icon {
+        //         padding: 10px;
+        //     }
 
-            .favorited {
-                color: #cd4851;
-            }
+        //     .favorited {
+        //         color: #cd4851;
+        //     }
 
-            .selected {
-                color: #ffd31a;
-            }
-        }
+        //     .selected {
+        //         color: #ffd31a;
+        //     }
+        // }
 
-        .second-movie-user-actions {
-            display: flex;
-            padding: 10px 0px;            
-            background-color: #0a0a0a;
-            border-bottom: 3px solid #cd4851;
+        // .second-movie-user-actions {
+        //     display: flex;
+        //     padding: 10px 0px;            
+        //     background-color: #0a0a0a;
+        //     border-bottom: 3px solid #cd4851;
             
-            .movie-rate {
-                padding: 0px 0px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 25px;
-                width: 50%; 
-                border-right: 1px solid #b1b1b1;
+        //     .movie-rate {
+        //         padding: 0px 0px;
+        //         display: flex;
+        //         justify-content: center;
+        //         align-items: center;
+        //         font-size: 25px;
+        //         width: 50%; 
+        //         border-right: 1px solid #b1b1b1;
 
-                ion-icon {
-                    padding-left: 5px;
+        //         ion-icon {
+        //             padding-left: 5px;
 
-                    &:first-child {
-                        padding-left: 0px;
-                    }
-                }
+        //             &:first-child {
+        //                 padding-left: 0px;
+        //             }
+        //         }
 
-                .active {
-                    color: #cd4851;
-                }
-            }
+        //         .active {
+        //             color: #cd4851;
+        //         }
+        //     }
 
-            .movie-play {
-                padding: 0px 0px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 21px;
-                width: 50%;
-                border-left: 1px solid #b1b1b1;
-            }
-        }
+        //     .movie-play {
+        //         padding: 0px 0px;
+        //         display: flex;
+        //         justify-content: center;
+        //         align-items: center;
+        //         font-size: 21px;
+        //         width: 50%;
+        //         border-left: 1px solid #b1b1b1;
+        //     }
+        // }
 
         .overview {
-            padding: 20px 20px 20px 20px;
+            padding: 20px 20px 2px 20px;
 
             .title {
                 font-size: 21px;
@@ -195,21 +201,23 @@ ion-back-button{
                 color: #b1b1b1;
             }
         }
-        .cast-and-crew {
-            padding: 30px 20px 20px 20px;
+        .cast {
+            padding: 2px 20px 10px 20px;
             .title {
                 font-size: 21px;
                 font-weight: 600;
             }
             .cast-list {
                 display: flex;
+                height: 150px;
                 overflow-x: scroll;
                 overflow-y: hidden;
 
                 .cast-item {
                     width: 120px;
-                    height: 170px;
+                    height: 165px;
                     padding: 10px;
+                    padding-bottom: 2px;
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
@@ -233,7 +241,7 @@ ion-back-button{
 
                     .cast-info {
                         width: 120px;
-                        height: 120px;
+                        height: 80px;
                         margin-top: 10px;
                         text-align: center;
                         overflow: hidden;
@@ -253,37 +261,41 @@ ion-back-button{
                 
             }
         }
+        
+        .similar-movie-card {
+            margin-bottom:0px;
 
-        .similar-movies {
-            padding: 30px 20px 20px 20px;
-            .title {
-                font-size: 21px;
-                font-weight: 600;
-            }            
-            .content {
-                display: flex;
-                overflow-x: scroll;
-                overflow-y: hidden;
-
-                .movie {
-                    width: 110px;
-                        height: 160px;
-                    padding: 10px;
+            .similar-movies {
+                padding: 20px 20px 20px 20px;
+                .title {
+                    font-size: 21px;
+                    font-weight: 600;
+                }            
+                .content {
                     display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    margin-right: 10px;
+                    overflow-x: scroll;
+                    overflow-y: hidden;
 
-                    .movie-poster {
-                        width: 100px;
-                        height: 150px;
-                        
-                        img {
+                    .movie {
+                        width: 110px;
+                            height: 160px;
+                        padding: 10px;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        margin-right: 10px;
+
+                        .movie-poster {
                             width: 100px;
                             height: 150px;
+                            
+                            img {
+                                width: 100px;
+                                height: 150px;
+                            }
                         }
+
                     }
-                    
                 }
             }
         }
