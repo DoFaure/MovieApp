@@ -1,22 +1,24 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
-}
-
-ion-icon {
-
-  // background: url('../../assets/images/logo_movies.png') no-repeat right center;
-  background-size: 2%;
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
 }
 
 ion-card{
   box-shadow: none !important;
 }
 
-img {
-  height: auto;
-  border-radius: 10px;
-  padding: 5px;
+ion-card-header{
+  padding-bottom: 0px;
+
+  #list{
+    float: right;
+    color: purple !important;
+    zoom:1.5;
+  }
+}
+ion-card-content{
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .scrolling-wrapper {
@@ -24,41 +26,57 @@ img {
   overflow-y: hidden;
   white-space: nowrap;
   
-
-  .movie {
+  .serie{
     display: inline-block;
-    width: 50%;    
+    width: 175px;
+
+    .poster {
+    
+      // width: 50%;   
+      width: 175px;
+      height: 250px;
+        
+        img {
+            width: 175px;
+            height: 250px;
+            padding: 10px;
+            border-radius: 15px;
+
+        }
+    }
+
+    .serie-title{
+      overflow: hidden;
+      padding-right: 4px;
+      text-align: center;
+      width: 165px;
+      padding: 0px 10px;
+
+      .title{
+        width: 160px;
+        float: left;
+      }
+    }
+
   }
+
 }
 
-.header-card-movies {
+.header-card-series {
+
   button{
-  border: none;
-  background: none;
-  position: relative;
-  width: 100%;
-  top:1px;
-  right: 1px;
-  ion-card-subtitle{
-    float:left;
-    zoom:1.3;
-    margin-bottom: 0px;
-    margin-top: 2px;
-  }
+    border: none;
+    background: none;
+    position: relative;
+    width: 100%;
+    top:1px;
+    right: 1px;
+
+    ion-card-subtitle{
+      float:left;
+      zoom:1.3;
+      margin-bottom: 0px;
+      margin-top: 2px;
+    }
   } 
-}
-
-#list{
-  float: right;
-  color: purple !important;
-  zoom:1.5;
-}
-
-ion-card-header{
-  padding-bottom: 0px;
-}
-ion-card-content{
-  padding-top: 0px;
-  padding-bottom: 0px;
-
 }

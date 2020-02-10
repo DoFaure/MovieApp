@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IonInfiniteScroll } from "@ionic/angular";
-
 /* Models */
 import { Serie } from "src/app/models/series/serie";
 
@@ -35,7 +33,6 @@ export class TabSerie implements OnInit {
     this.isDataLoaded = false;
     this.serieService.getDiffuseAujourdhuiSerieList(pageNumber).subscribe(serieResponse => {
       this.diffusionOjdSerieList = this.diffusionOjdSerieList.concat(serieResponse);
-      // this.infiniteScroll.complete();
       this.isDataLoaded = true;
     });
   }
@@ -44,7 +41,6 @@ export class TabSerie implements OnInit {
     this.isDataLoaded = false;
     this.serieService.getPopularSerie(pageNumber).subscribe(serieResponse => {
       this.popularSerieList = this.popularSerieList.concat(serieResponse);
-      // this.infiniteScroll.complete();
       this.isDataLoaded = true;
     });
   }
@@ -53,7 +49,6 @@ export class TabSerie implements OnInit {
     this.isDataLoaded = false;
     this.serieService.getTopRatedSerie(pageNumber).subscribe(SerieResponse => {
       this.bestSerieList = this.bestSerieList.concat(SerieResponse);
-      // this.infiniteScroll.complete();
       this.isDataLoaded = true;
     });
   }
@@ -62,7 +57,6 @@ export class TabSerie implements OnInit {
     this.isDataLoaded = false;
     this.serieService.getTopUpcomingSerie(pageNumber).subscribe(SerieResponse => {
       this.upcomingSerieList = this.upcomingSerieList.concat(SerieResponse);
-      // this.infiniteScroll.complete();
       this.isDataLoaded = true;
     });
   }

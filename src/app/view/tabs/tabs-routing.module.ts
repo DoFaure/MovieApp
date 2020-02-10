@@ -21,7 +21,7 @@ const routes: Routes = [
               {
                 path: '',
                 loadChildren: () =>
-                import('../filmList/filmList.module').then(m => m.filmListPageModule)
+                import('../infiniteList/infiniteList.module').then(m => m.infiniteListPageModule)
               }
             ]
           },
@@ -44,7 +44,17 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tabSerie/tabSerie.module').then(m => m.TabSeriePageModule)
-          }
+          },
+          { 
+            path: 'list/:category', 
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                import('../infiniteList/infiniteList.module').then(m => m.infiniteListPageModule)
+              }
+            ]
+          },
         ]
       },
       {

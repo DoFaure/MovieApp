@@ -12,8 +12,8 @@
 
     <ion-card mode="ios" class="popular-movies" no-padding no-margin>
 
-      <ion-card-header class="header-card-movies">
-        <button ion-button icon-only>
+      <ion-card-header class="header-card-series">
+        <button ion-button icon-only [routerLink]="['/tabs/serie/list/', 'today']">
           <ion-card-subtitle>
 
             Aujourd'hui à la TV
@@ -24,12 +24,19 @@
       </ion-card-header>
 
       <ion-card-content>
-        <div class="scrolling-wrapper">
-          <div class="movie" *ngFor="let serie of diffusionOjdSerieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"
-              onError="this.src = '../assets/images/no-image-poster.png'" />
+
+        <div class="scrolling-wrapper" *ngIf="diffusionOjdSerieList">
+          <div class="serie" *ngFor="let serie of diffusionOjdSerieList">
+            <div class="poster">
+              <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
+              />
+            </div>
+            <div class="serie-title">
+              <span class="title">{{serie.name}}</span>
+            </div>
           </div>
         </div>
+
       </ion-card-content>
 
     </ion-card>
@@ -41,8 +48,8 @@
 
     <ion-card mode="ios" class="popular-movies" no-padding no-margin>
 
-      <ion-card-header class="header-card-movies">
-        <button ion-button icon-only>
+      <ion-card-header class="header-card-series">
+        <button ion-button icon-only [routerLink]="['/tabs/serie/list/', 'popularSeries']">
           <ion-card-subtitle>
 
             Séries tendance
@@ -53,12 +60,19 @@
       </ion-card-header>
 
       <ion-card-content>
-        <div class="scrolling-wrapper">
-          <div class="movie" *ngFor="let serie of popularSerieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"
-              onError="this.src = '../assets/images/no-image-poster.png'" />
+
+        <div class="scrolling-wrapper" *ngIf="popularSerieList">
+          <div class="serie" *ngFor="let serie of popularSerieList">
+            <div class="poster">
+              <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
+              />
+            </div>
+            <div class="serie-title">
+              <span class="title">{{serie.name}}</span>
+            </div>
           </div>
         </div>
+
       </ion-card-content>
 
     </ion-card>
@@ -70,8 +84,8 @@
 
     <ion-card mode="ios" class="best-movies" no-padding no-margin>
 
-      <ion-card-header class="header-card-movies">
-        <button ion-button icon-only>
+      <ion-card-header class="header-card-series">
+        <button ion-button icon-only [routerLink]="['/tabs/serie/list/', 'best']">
           <ion-card-subtitle>
 
             Séries les mieux notés
@@ -82,10 +96,16 @@
       </ion-card-header>
 
       <ion-card-content>
-        <div class="scrolling-wrapper">
-          <div class="movie" *ngFor="let serie of bestSerieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"
-              onError="this.src = '../assets/images/no-image-poster.png'" />
+
+        <div class="scrolling-wrapper" *ngIf="bestSerieList">
+          <div class="serie" *ngFor="let serie of bestSerieList">
+            <div class="poster">
+              <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
+              />
+            </div>
+            <div class="serie-title">
+              <span class="title">{{serie.name}}</span>
+            </div>
           </div>
         </div>
       </ion-card-content>
@@ -98,8 +118,8 @@
 
     <ion-card mode="ios" class="upcoming-movies" no-padding no-margin>
 
-      <ion-card-header class="header-card-movies">
-        <button ion-button icon-only>
+      <ion-card-header class="header-card-series">
+        <button ion-button icon-only [routerLink]="['/tabs/serie/list/', 'upcomingSeries']">
           <ion-card-subtitle>
 
             Prochaine Séries
@@ -110,12 +130,19 @@
       </ion-card-header>
 
       <ion-card-content>
-        <div class="scrolling-wrapper">
-          <div class="movie" *ngFor="let serie of upcomingSerieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"
-              onError="this.src = '../assets/images/no-image-poster.png'" />
+
+        <div class="scrolling-wrapper" *ngIf="upcomingSerieList">
+          <div class="serie" *ngFor="let serie of upcomingSerieList">
+            <div class="poster">
+              <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
+              />
+            </div>
+            <div class="serie-title">
+              <span class="title">{{serie.name}}</span>
+            </div>
           </div>
         </div>
+
       </ion-card-content>
 
     </ion-card>
