@@ -126,16 +126,6 @@
       </ion-card-header>
 
       <ion-card-content>
-        <!-- <div class="scrolling-wrapper" >
-          <div class="movie" *ngFor="let movie of upcomingMovieList">
-            <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'"
-            [routerLink]="['/tabs/film/film-detail/', movie.id]"  />  
-          </div>
-          <div class="cast-info">
-            <span class="movie-name">{{movie.title}}</span>
-          </div>
-       </div> -->
-
         <div class="scrolling-wrapper" *ngIf="upcomingMovieList">
           <div class="movie" *ngFor="let movie of upcomingMovieList">
             <div class="poster">
