@@ -55,6 +55,10 @@ const routes: Routes = [
               }
             ]
           },
+          {
+            path: 'serie-detail/:serieID',
+            loadChildren: () => import('../serieDetail/serieDetail.module').then( m => m.SerieDetailPageModule)
+          }
         ]
       },
       {

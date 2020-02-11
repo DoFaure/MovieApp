@@ -29,7 +29,7 @@
           <div class="serie" *ngFor="let serie of diffusionOjdSerieList">
             <div class="poster">
               <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
-              />
+              [routerLink]="['/tabs/serie/serie-detail/', serie.id]"/>
             </div>
             <div class="serie-title">
               <span class="title">{{serie.name}}</span>
@@ -65,7 +65,7 @@
           <div class="serie" *ngFor="let serie of popularSerieList">
             <div class="poster">
               <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
-              />
+              [routerLink]="['/tabs/serie/serie-detail/', serie.id]"/>
             </div>
             <div class="serie-title">
               <span class="title">{{serie.name}}</span>
@@ -101,7 +101,7 @@
           <div class="serie" *ngFor="let serie of bestSerieList">
             <div class="poster">
               <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
-              />
+              [routerLink]="['/tabs/serie/serie-detail/', serie.id]"/>
             </div>
             <div class="serie-title">
               <span class="title">{{serie.name}}</span>
@@ -135,7 +135,7 @@
           <div class="serie" *ngFor="let serie of upcomingSerieList">
             <div class="poster">
               <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"  onError="this.src = '../assets/images/no-image-poster.png'"
-              />
+              [routerLink]="['/tabs/serie/serie-detail/', serie.id]"/>
             </div>
             <div class="serie-title">
               <span class="title">{{serie.name}}</span>
