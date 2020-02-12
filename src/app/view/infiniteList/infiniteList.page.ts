@@ -9,7 +9,7 @@ import { Serie } from "src/app/models/series/serie"
 
 /* Services */
 import { MovieService } from "src/app/services/movie/movie.service";
-import { SerieService } from "src/app/services/movie/serie.service"; 
+import { SerieService } from "src/app/services/serie/serie.service"; 
 
 @Component({
   selector: "app-infiniteList",

@@ -261,6 +261,22 @@ ion-back-button{
                 
             }
         }
+
+        .season-card {
+            margin-bottom:0px;
+
+            .season-series {
+                padding: 20px 20px 20px 20px;
+                .title {
+                    font-size: 21px;
+                    font-weight: 600;
+                }
+                
+                .content{
+                    padding:0px;
+                }
+            }
+        }
         
         .similar-serie-card {
             margin-bottom:0px;

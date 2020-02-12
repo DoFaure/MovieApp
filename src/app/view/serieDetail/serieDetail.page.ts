@@ -8,7 +8,7 @@ import { Serie } from "src/app/models/series/serie";
 import { Cast } from 'src/app/models/credit';
 
 /* Services */
-import { SerieService } from 'src/app/services/movie/serie.service'
+import { SerieService } from 'src/app/services/serie/serie.service'
 
 @Component({
   selector: 'app-serieDetail',

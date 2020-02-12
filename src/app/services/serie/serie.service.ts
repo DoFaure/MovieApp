@@ -7,6 +7,7 @@ import { map, catchError } from 'rxjs/operators';
 
 /* Models */
 import { Serie, SerieResponse } from 'src/app/models/series/serie';
+import { Cast, CreditResponse } from 'src/app/models/credit'
 
 @Injectable({
     providedIn: 'root'
@@ -69,7 +70,8 @@ export class SerieService {
 
     searchSerie(searchText: string): Observable<Serie[]> {
         var queryParams = {
-            query: searchText
+            query: searchText,
+            language: "fr"
         }
 
         return this.http.get("/search/tv", { params: queryParams }).pipe(
@@ -85,7 +87,10 @@ export class SerieService {
     }
 
     getSerieDetail(serieID: string): Observable<Serie> {
-        return this.http.get("/tv/" + serieID).pipe(
+        var queryParams: any = {
+            language: "fr",
+          }
+        return this.http.get("/tv/" + serieID,{params: queryParams}).pipe(
             map((response: Serie) => {
                 return response;
             })
@@ -101,10 +106,20 @@ export class SerieService {
         );
     }
 
+    getSerieCredit(movieID: string): Observable<Cast[]> {
+        let url = '/tv/' + movieID + '/credits';
+        return this.http.get(url).pipe(
+          map((response: CreditResponse) => {
+            return response.cast;
+          })
+        );
+      }
+
     getCategorySerie(genderID: string, page: number): Observable<Serie[]> {
         var queryParams: any = {
             with_genres: genderID,
             page: page,
+            language: "fr",
         }
         let url = '/discover/tv';
         return this.http.get(url, { params: queryParams }).pipe(

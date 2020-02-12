@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Serie } from "src/app/models/series/serie";
 
 /* Services */
-import { SerieService } from "src/app/services/movie/serie.service";
+import { SerieService } from "src/app/services/serie/serie.service";
 
 @Component({
   selector: 'app-tabSerie',
