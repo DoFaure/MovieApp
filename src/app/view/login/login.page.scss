@@ -1,0 +1,39 @@
+.login{
+
+    .logo{
+        display:block;
+        width:50%;
+        height:auto;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .form{
+        .spacer{
+            width:300px;
+            height:22px;
+        }
+        .list{
+            background-color: #212428;
+        }
+
+        .forgot{
+            font-weight:500;
+            font-style:italic;
+            color:#1492F3;
+            text-align:right;
+        }
+
+        .signin{
+           font-weight:600;
+           color:#101110;
+           border-radius:20px 20px 20px 20px;
+        }
+
+        .signup{
+           font-weight:600;
+           color:#131515;
+           border-radius:20px 20px 20px 20px;
+        }
+    }
+}

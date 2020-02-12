@@ -1,0 +1,31 @@
+<ion-content padding class="login" color="dark">
+  <img class="logo" src="assets/img/0NGSqwEwSmUbHpDrqCQo_Logo_Movies_Fond_Noir.png"/>
+  <form class="form">
+    <div class="spacer"></div>
+    <ion-list class="list" >
+      <ion-item color="dark">
+        <ion-label color="light">
+          Email
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="user.email" name="email" color="dark"></ion-input>
+      </ion-item>
+      <ion-item color="dark">
+        <ion-label color="light">
+          Mot de passe
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="user.password" name="password" color="dark"></ion-input>
+      </ion-item>
+    </ion-list>
+    <button class="forgot" ion-button clear color="light" block small on-click="goToPassword_demande()">
+      Mot de passe oublié ?
+    </button>
+    <div class="spacer"></div>
+    <button class="signin" ion-button color="assertive" block  on-click="login()"  >
+      Connexion
+    </button>
+    <div class="spacer"></div>
+    <button class="signup" ion-button color="energized" block [routerLink]="['/register']">
+      Inscription
+    </button>
+  </form>
+</ion-content>

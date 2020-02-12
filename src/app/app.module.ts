@@ -10,9 +10,24 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+/* Database */
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth'
+
 /* Helpers */
 import { CustomHttpInterceptor } from './core/custom-http.interceptor';
+
  
+
+var CREDENTIALS = {
+  apiKey: "AIzaSyAdJZD1u7cVrwmsUjT903YFJefC4YAzRGo",
+  authDomain: "moviesplus-ed23b.firebaseapp.com",
+  databaseURL: "https://moviesplus-ed23b.firebaseio.com",
+  projectId: "moviesplus-ed23b",
+  storageBucket: "moviesplus-ed23b.appspot.com",
+  messagingSenderId: "860453629282",
+
+};
 
 
 @NgModule({
@@ -23,6 +38,8 @@ import { CustomHttpInterceptor } from './core/custom-http.interceptor';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(CREDENTIALS),
+    AngularFireAuthModule
   ],
   providers: [
     StatusBar,
@@ -32,7 +49,9 @@ import { CustomHttpInterceptor } from './core/custom-http.interceptor';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  
+}
 
 
 

@@ -4,7 +4,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -34,7 +34,7 @@ const routes: Routes = [
                 import('../filmDetail/filmDetail.module').then(m => m.filmDetailPageModule)
               },
             ]
-          },
+          },   
         ]
       },
       {
@@ -93,15 +93,15 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/film',
-        pathMatch: 'full'
+        redirectTo: 'tabs/film',
+        pathMatch: 'prefix'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/film',
-    pathMatch: 'full'
+    redirectTo: 'tabs/film',
+    pathMatch: 'prefix'
   }
 ];
 
