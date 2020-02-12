@@ -68,6 +68,15 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tabSearch/tabSearch.module').then(m => m.Tab3PageModule)
+          },
+          {
+            path: 'serie-detail/:serieID',
+            loadChildren: () => import('../serieDetail/serieDetail.module').then(m => m.SerieDetailPageModule)
+          },
+          {
+            path: 'film-detail/:movieID',
+            loadChildren: () =>
+              import('../filmDetail/filmDetail.module').then(m => m.filmDetailPageModule)
           }
         ]
       },
