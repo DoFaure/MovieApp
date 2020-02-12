@@ -117,14 +117,13 @@
         <div class=title>
           <span class="title">Saisons</span>
         </div>
-        <!-- <div class="content">
-          <div class="serie" *ngFor="let serie of similarSeries">
-            <div class="serie-poster">
-              <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"
-              [routerLink]="['/tabs/serie/serie-detail/', serie.id]" />
-            </div>
-          </div>
-        </div>-->
+        <div class="content">
+          <ion-item-group *ngFor="let season of serie.seasons">
+            <ion-item>
+              <ion-label class="season-label"> {{season.name}} - {{season.episode_count}} épisodes</ion-label>
+            </ion-item>
+          </ion-item-group>
+        </div>
       </div> 
     </ion-card>
 
