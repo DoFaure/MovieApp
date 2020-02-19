@@ -1,70 +1,141 @@
 <ion-header>
   <ion-toolbar>
     <div class="bar">
-      <ion-searchbar animated placeholder="Rechercher" inputmode="search" [(ngModel)]="inputSearch" name="searchBar" (ionChange)="getSearchBar(inputSearch)">
+      <ion-searchbar animated placeholder="Rechercher" inputmode="search" [(ngModel)]="inputSearch" name="searchBar"
+        (ionChange)="getSearchBar(inputSearch)">
       </ion-searchbar>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen >
+<ion-content fullscreen>
 
-    <ion-list *ngFor="let searchResultS of listS">
+  <div *ngFor="let searchResultS of listS">
 
-      <ion-item [routerLink]="['/tabs/search/serie-detail/', searchResultS.id]">
-          <ion-grid>   
+    <ion-card [routerLink]="['/tabs/search/serie-detail/', searchResultS.id]">
+      <ion-grid>
+
+        <ion-row>
+          <ion-col size="2.5" >
+            <ion-img src="https://image.tmdb.org/t/p/w500/{{searchResultS.poster_path}}" onError="this.src='../assets/images/no-image-poster.png'">
+            </ion-img>
+          </ion-col>
+          <ion-col size="0.5"></ion-col>
+          <ion-col size="9">
+            <ion-item>
+              <ion-card-subtitle class="subtitle">{{ searchResultS.name }}</ion-card-subtitle>
+            </ion-item>
             <ion-row>
-              <ion-col size="1"></ion-col>
-              <ion-col size="3">
-                <div class="affiche">
-                <img src="https://image.tmdb.org/t/p/w500/{{searchResultS.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" />
-                </div>
-              </ion-col>
-              <ion-col size="1"></ion-col>
-              <ion-col size="7">
+
+              <ion-col size="6" class="date">
                 <ion-label>
-                  <div class="titre">
-                    <h2> <b> {{ searchResultS.name }} </b> </h2>
-                  </div>
-                  <h3> {{ searchResultS.first_air_date | date: 'yyyy' }} </h3>
-                  <h2 class="note"> Note : {{ searchResultS.vote_average }} </h2>             
+                  {{ searchResultS.first_air_date | date: 'yyyy' }}
                 </ion-label>
               </ion-col>
-            </ion-row>
-          
-          </ion-grid>
+              <ion-col size="6" class="note">
 
-      </ion-item>
-            
-    </ion-list>
+                <div>
 
+                  <ion-label *ngIf="searchResultS.vote_average == 0" class="date">
+                    <b>Aucune Note</b>
+                  </ion-label>
 
-    <ion-list *ngFor="let searchResultM of listF">
-    
-      <ion-item [routerLink]="['/tabs/search/film-detail/', searchResultM.id]">
-        <ion-grid>
-          <ion-row>
-            <ion-col size="1"></ion-col>
-            <ion-col size="3">
-              <div class="affiche">
-                <img
-                src="https://image.tmdb.org/t/p/w500/{{searchResultM.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" />
-              </div>
-            </ion-col>
-            <ion-col size="1"></ion-col>
-            <ion-col size="7">
-              <ion-label>
-                <div class="titre">
-                  <h2> <b> {{ searchResultM.title }} </b> </h2>
+                  <ion-label *ngIf="searchResultS.vote_average > 0 && searchResultS.vote_average <2" class="note-rouge">
+                    {{ searchResultS.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultS.vote_average >=2 && searchResultS.vote_average < 5"
+                    class="note-orange">
+                    {{ searchResultS.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultS.vote_average >=5 && searchResultS.vote_average <6" class="note-jaune">
+                    {{ searchResultS.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultS.vote_average >=6 && searchResultS.vote_average <8"
+                    class="note-vert-clair">
+                    {{ searchResultS.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultS.vote_average >=8 && searchResultS.vote_average <=10"
+                    class="note-vert-fonce">
+                    {{ searchResultS.vote_average }}
+                  </ion-label>
+
                 </div>
-                <h3> {{ searchResultM.release_date | date: 'yyyy' }} </h3>
-                <h2 class="note"> Note : {{ searchResultM.vote_average }} </h2>
-              </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </ion-list>
+
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+  </div>
+
+
+  <div *ngFor="let searchResultM of listF">
+
+    <ion-card [routerLink]="['/tabs/search/film-detail/', searchResultM.id]">
+      <ion-grid>
+
+        <ion-row>
+          <ion-col size="2.5">
+            <ion-img src="https://image.tmdb.org/t/p/w500/{{searchResultM.poster_path}}" onError="this.src='../assets/images/no-image-poster.png'">
+            </ion-img>
+          </ion-col>
+          <ion-col size="0.5"></ion-col>
+          <ion-col size="9">
+            <ion-item>
+              <ion-card-subtitle class="subtitle" >{{ searchResultM.title }}</ion-card-subtitle>
+            </ion-item>
+            <ion-row>
+
+              <ion-col size="6" class="date">
+                <ion-label>
+                  {{ searchResultM.release_date | date: 'yyyy' }}
+                </ion-label>
+              </ion-col>
+              <ion-col size="6" class="note">
+
+                <div>
+
+                  <ion-label *ngIf="searchResultM.vote_average == 0">
+                    <b>Aucune Note</b>
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultM.vote_average > 0 && searchResultM.vote_average <2" class="note-rouge">
+                    {{ searchResultM.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultM.vote_average >=2 && searchResultM.vote_average < 5"
+                    class="note-orange">
+                    {{ searchResultM.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultM.vote_average >=5 && searchResultM.vote_average <6" class="note-jaune">
+                    {{ searchResultM.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultM.vote_average >=6 && searchResultM.vote_average <8"
+                    class="note-vert-clair">
+                    {{ searchResultM.vote_average }}
+                  </ion-label>
+
+                  <ion-label *ngIf="searchResultM.vote_average >=8 && searchResultM.vote_average <=10"
+                    class="note-vert-fonce">
+                    {{ searchResultM.vote_average }}
+                  </ion-label>
+
+                </div>
+
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
 </ion-content>
-
-

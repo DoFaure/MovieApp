@@ -92,7 +92,8 @@ export class MovieService {
 
   searchMovie(searchText: string): Observable<Movie[]> {
     var queryParams = {
-      query: searchText
+      query: searchText,
+      language: "fr"
     }
 
     return this.http.get("/search/movie", { params: queryParams }).pipe(
