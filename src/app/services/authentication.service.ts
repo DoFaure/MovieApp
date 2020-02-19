@@ -1,17 +1,24 @@
 import { Injectable } from "@angular/core";
+import { NavController } from '@ionic/angular';
 import * as firebase from 'firebase/app';
  
 @Injectable()
 export class AuthenticateService {
  
-  constructor(){}
+  constructor(private navCtrl : NavController){}
  
   registerUser(value){
    return new Promise<any>((resolve, reject) => {
      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-     .then(
-       res => resolve(res),
-       err => reject(err))
+     .then((auth : any)=> {
+        return firebase.database().ref('users/' + auth.user.uid).set({
+          email: value.email,
+          uid: auth.user.uid
+        });
+      }), 
+      res => resolve(res),
+      err => reject(err),
+      this.navCtrl.navigateForward('')    
    })
   }
  

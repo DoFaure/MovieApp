@@ -12,13 +12,15 @@ import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+/* Helpers */
+import { CustomHttpInterceptor } from './core/custom-http.interceptor';
+
 /* Database */
 import { environment } from 'src/environments/environment';
 import { AuthenticateService } from './services/authentication.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
-/* Helpers */
-import { CustomHttpInterceptor } from './core/custom-http.interceptor';
 
 import * as firebase from 'firebase';
 
@@ -33,6 +35,8 @@ firebase.initializeApp(environment.firebase);
     AppRoutingModule,
     HttpClientModule,
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireModule,
     ReactiveFormsModule,
     FormsModule
   ],
