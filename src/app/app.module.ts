@@ -10,10 +10,21 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 /* Helpers */
 import { CustomHttpInterceptor } from './core/custom-http.interceptor';
- 
 
+/* Database */
+import { environment } from 'src/environments/environment';
+import { AuthenticateService } from './services/authentication.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import * as firebase from 'firebase';
+
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,16 +34,28 @@ import { CustomHttpInterceptor } from './core/custom-http.interceptor';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AuthenticateService,
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  
+}
 
 
 

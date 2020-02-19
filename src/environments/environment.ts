@@ -4,8 +4,17 @@
 
 export const environment = {
   production: true,
-  baseUrl: 'https://api.themoviedb.org/3'
+  baseUrl: 'https://api.themoviedb.org/3',
+  firebase: {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
