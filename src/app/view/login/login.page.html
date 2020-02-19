@@ -1,31 +1,39 @@
-<ion-content padding class="login" color="dark">
-  <img class="logo" src="assets/img/0NGSqwEwSmUbHpDrqCQo_Logo_Movies_Fond_Noir.png"/>
-  <form class="form">
-    <div class="spacer"></div>
-    <ion-list class="list" >
-      <ion-item color="dark">
-        <ion-label color="light">
-          Email
-        </ion-label>
-        <ion-input type="text" [(ngModel)]="user.email" name="email" color="dark"></ion-input>
-      </ion-item>
-      <ion-item color="dark">
-        <ion-label color="light">
-          Mot de passe
-        </ion-label>
-        <ion-input type="password" [(ngModel)]="user.password" name="password" color="dark"></ion-input>
-      </ion-item>
-    </ion-list>
-    <button class="forgot" ion-button clear color="light" block small on-click="goToPassword_demande()">
-      Mot de passe oublié ?
-    </button>
-    <div class="spacer"></div>
-    <button class="signin" ion-button color="assertive" block  on-click="login()"  >
-      Connexion
-    </button>
-    <div class="spacer"></div>
-    <button class="signup" ion-button color="energized" block [routerLink]="['/register']">
+<ion-content class="login">
+  <ion-grid>
+    <ion-button class="signup" fill="outline" color="medium" size="small" (click)="goToRegisterPage()">
       Inscription
-    </button>
-  </form>
+    </ion-button>
+    <img class="logo" src="assets/images/logo_movies.png" />
+    <form class="form" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
+      <div class="spacer"></div>
+      <ion-list class="list" >
+          <ion-input class="input-connexion" type="text" formControlName="email" placeholder="Email" ></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+          <ion-input class="input-connexion" type="password" formControlName="password"  placeholder="Mot de passe" ></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+      </ion-list>
+      <ion-button class="forgot" small color="black" size="small" on-click="goToPassword_demande()">
+        Mot de passe oublié ?
+      </ion-button>
+      <div class="spacer"></div>
+    
+      <div class="spacer"></div>
+      <ion-button color="medium" fill="outline" class="signin submit-btn" type="submit"  [disabled]="!validations_form.valid">
+        Connexion
+      </ion-button>
+      <label class="error-message">{{errorMessage}}</label>
+    </form>
+  </ion-grid>
 </ion-content>

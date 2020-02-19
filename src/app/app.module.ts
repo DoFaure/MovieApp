@@ -10,25 +10,19 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 /* Database */
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth'
+import { environment } from 'src/environments/environment';
+import { AuthenticateService } from './services/authentication.service';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 /* Helpers */
 import { CustomHttpInterceptor } from './core/custom-http.interceptor';
 
- 
+import * as firebase from 'firebase';
 
-var CREDENTIALS = {
-  apiKey: "AIzaSyAdJZD1u7cVrwmsUjT903YFJefC4YAzRGo",
-  authDomain: "moviesplus-ed23b.firebaseapp.com",
-  databaseURL: "https://moviesplus-ed23b.firebaseio.com",
-  projectId: "moviesplus-ed23b",
-  storageBucket: "moviesplus-ed23b.appspot.com",
-  messagingSenderId: "860453629282",
-
-};
-
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,14 +32,20 @@ var CREDENTIALS = {
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(CREDENTIALS),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AuthenticateService,
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

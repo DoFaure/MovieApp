@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {  NavController, NavParams } from '@ionic/angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AuthenticateService } from 'src/app/services/authentication.service';
 
 export class User {
   email: string;
@@ -12,26 +13,60 @@ export class User {
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage{
+export class LoginPage implements OnInit{
 
-  public user:User = new User();
-
-  constructor(public navCtrl: NavController, public fAuth: AngularFireAuth){
+  validations_form: FormGroup;
+  errorMessage: string = '';
+ 
+  constructor(
+ 
+    private navCtrl: NavController,
+    private authService: AuthenticateService,
+    private formBuilder: FormBuilder
+ 
+  ) { }
+ 
+  ngOnInit() {
+ 
+    this.validations_form = this.formBuilder.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])),
+    });
   }
-
-  async login() {
-    try {
-      var r = await this.fAuth.auth.signInWithEmailAndPassword(
-        this.user.email,
-        this.user.password
-      );
-      if (r) {
-        console.log("Successfully logged in!");
-        this.navCtrl.navigateRoot('tabs');
-      }
-
-    } catch (err) {
-      console.error(err);
-    }
+ 
+ 
+  validation_messages = {
+    'email': [
+      { type: 'required', message: 'L\'email est requis.' },
+      { type: 'pattern', message: 'Entrez un email valide.' }
+    ],
+    'password': [
+      { type: 'required', message: 'Mot de passe requis.' },
+      { type: 'minlength', message: 'Le mot de passe doit contenir 5 caractéres minimum.' }
+    ]
+  };
+ 
+ 
+  loginUser(value){
+    this.authService.loginUser(value)
+    .then(res => {
+      console.log(res);
+      this.errorMessage = "";
+      this.navCtrl.navigateForward('/tabs');
+    }, err => {
+      this.errorMessage = err.message;
+    })
   }
+ 
+  goToRegisterPage(){
+    this.navCtrl.navigateForward('/register');
+  }
+ 
 }
+ 

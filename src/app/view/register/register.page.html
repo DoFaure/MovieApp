@@ -1,19 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Création d'un compte</ion-title>
+  <ion-toolbar color="black">
+    <ion-title>Inscription</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-item>
-    <ion-label>Email Address</ion-label>
-    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-  </ion-item>
+<ion-content class="register">
+  <ion-grid>
+    <ion-button class="signin" fill="outline" color="medium" size="small" block (click)="goLoginPage()">
+      Se connecter
+    </ion-button>
+    <form class="form" [formGroup]="validations_form"  (ngSubmit)="tryRegister(validations_form.value)">
+      <div class="spacer"></div>
+      <div class="spacer"></div>
+      <ion-list class="list" >
+          <ion-input class="input-connexion" type="text" formControlName="email" placeholder="Email" ></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+          <ion-input class="input-connexion" type="password" formControlName="password"  placeholder="Mot de passe" ></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-list>
 
-  <ion-item>
-    <ion-label>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
-
-  <button ion-button  (click)="register()">Register</button>
+      <div class="spacer"></div>
+      <ion-button color="medium" fill="outline" class="validate submit-btn" type="submit"  [disabled]="!validations_form.valid">
+        S'inscrire
+      </ion-button>
+      <div class="spacer"></div>
+      <label class="error-message">{{errorMessage}}</label>
+      <label class="success-message">{{successMessage}}</label>
+    </form>
+  </ion-grid>
 </ion-content>

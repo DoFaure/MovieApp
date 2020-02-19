@@ -1,27 +1,63 @@
+ion-content{
+    --ion-background-color: black;   
+    --position:fixed;
+    --overflow: hidden;
+}
+
 .login{
+    
+    .signup{
+        font-weight:600;
+        right: 0;
+        position: absolute;
+        margin :5px;
+     }
 
     .logo{
-        display:block;
-        width:50%;
-        height:auto;
+        position: relative;
+        text-align: center;
+        display: block;
+        width: 200px;
+        height: 200px;
         margin-left:auto;
         margin-right:auto;
+        background: transparent;
+        margin-top: 10px;
     }
 
     .form{
+        text-align: center;
+        vertical-align: middle;
         .spacer{
             width:300px;
             height:22px;
         }
         .list{
-            background-color: #212428;
+            background-color:black;
+            text-align: center;
+            margin-bottom: 0px;
+
+            .input-connexion{
+                background-color: white;
+                --placeholder-color: purple;
+                border-radius: 50px;
+                margin : 20px;
+                width : auto;
+                color: black;
+            }
+
+            .validation-errors{
+                color:white;
+            }
         }
 
         .forgot{
             font-weight:500;
             font-style:italic;
-            color:#1492F3;
-            text-align:right;
+            --color: rgb(58, 58, 151);
+            position: relative;
+            float: right;
+            margin-right: 20px;
         }
 
         .signin{
@@ -30,10 +66,6 @@
            border-radius:20px 20px 20px 20px;
         }
 
-        .signup{
-           font-weight:600;
-           color:#131515;
-           border-radius:20px 20px 20px 20px;
-        }
+  
     }
 }
