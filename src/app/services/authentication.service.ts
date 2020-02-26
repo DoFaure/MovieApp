@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { NavController } from '@ionic/angular';
 import * as firebase from 'firebase/app';
+import { resolve } from 'url';
  
 @Injectable()
 export class AuthenticateService {
@@ -14,13 +15,16 @@ export class AuthenticateService {
         return firebase.database().ref('users/' + auth.user.uid).set({
           email: value.email,
           uid: auth.user.uid
+        }).then(function (){
+          // send mail to the register user mail adress
+          resolve(auth.user.sendEmailVerification())
+        }).catch(function (err) {
+          err => reject(err);
         });
-      }), 
-      res => resolve(res),
-      err => reject(err),
-      this.navCtrl.navigateForward('')    
-   })
+      });
+    })
   }
+
  
   loginUser(value){
    return new Promise<any>((resolve, reject) => {

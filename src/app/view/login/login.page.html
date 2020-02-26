@@ -1,9 +1,13 @@
 <ion-content class="login">
   <ion-grid>
-    <ion-button class="signup" fill="outline" color="medium" size="small" (click)="goToRegisterPage()">
-      Inscription
-    </ion-button>
-    <img class="logo" src="assets/images/logo_movies.png" />
+    <ion-row class="head">
+      <ion-button class="signup" fill="outline" color="medium" size="small" (click)="goToRegisterPage()">
+        Inscription
+      </ion-button>
+    </ion-row>
+    <ion-row>
+        <img class="logo" src="assets/images/logo_movies.png" />
+    </ion-row>
     <form class="form" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
       <div class="spacer"></div>
       <ion-list class="list" >

@@ -5,18 +5,20 @@ ion-content{
 }
 
 .login{
+    z-index:-1; 
     
-    .signup{
-        font-weight:600;
-        right: 0;
+    .head{
         position: absolute;
-        margin :5px;
-     }
+        right: 0;
+        .signup{
+            font-weight:600;
+            margin :5px;
+        }
+    }
 
     .logo{
-        position: relative;
-        text-align: center;
         display: block;
+        text-align: center;
         width: 200px;
         height: 200px;
         margin-left:auto;
