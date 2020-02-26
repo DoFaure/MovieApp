@@ -32,7 +32,7 @@
         </ion-list>
 
       <div class="spacer"></div>
-      <ion-button color="medium" fill="outline" class="validate submit-btn" type="submit"  [disabled]="!validations_form.valid">
+      <ion-button color="medium" fill="outline" class="validate submit-btn" type="submit"  [disabled]="!validations_form.valid" (keyup.enter)="tryRegister(validations_form.value)">
         S'inscrire
       </ion-button>
       <div class="spacer"></div>
