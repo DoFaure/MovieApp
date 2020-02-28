@@ -19,7 +19,6 @@
   <div class="movie-poster-card" *ngIf="serieList">
     <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}" onError="this.src = '../assets/images/no-image-poster.png'" *ngFor="let serie of serieList" 
     [routerLink]="['/tabs/serie/serie-detail/', serie.id]"/>
-    />
   </div> 
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore()">
