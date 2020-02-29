@@ -1,18 +1,19 @@
 import { Injectable } from "@angular/core";
 import { NavController } from '@ionic/angular';
-import * as firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database'
 import { resolve } from 'url';
  
 @Injectable()
 export class AuthenticateService {
  
-  constructor(private navCtrl : NavController){}
+  constructor(private navCtrl : NavController, private afAuth : AngularFireAuth, private afDatabase : AngularFireDatabase){}
  
   registerUser(value){
    return new Promise<any>((resolve, reject) => {
-     firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
+     this.afAuth.auth.createUserWithEmailAndPassword(value.email, value.password)
      .then((auth : any)=> {
-        return firebase.database().ref('users/' + auth.user.uid).set({
+        return this.afDatabase.database.ref('users/' + auth.user.uid).set({
           email: value.email,
           uid: auth.user.uid
         }).then(function (){
@@ -28,7 +29,7 @@ export class AuthenticateService {
  
   loginUser(value){
    return new Promise<any>((resolve, reject) => {
-     firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+     this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password)
      .then(
        res => resolve(res),
        err => reject(err))
@@ -37,8 +38,8 @@ export class AuthenticateService {
  
   logoutUser(){
     return new Promise((resolve, reject) => {
-      if(firebase.auth().currentUser){
-        firebase.auth().signOut()
+      if(this.afAuth.auth.currentUser){
+        this.afAuth.auth.signOut()
         .then(() => {
           console.log("LOG Out");
           resolve();
@@ -50,6 +51,6 @@ export class AuthenticateService {
   }
  
   userDetails(){
-    return firebase.auth().currentUser;
+    return this.afAuth.auth.currentUser;
   }
 }
