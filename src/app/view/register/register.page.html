@@ -13,6 +13,30 @@
       <div class="spacer"></div>
       <div class="spacer"></div>
       <ion-list class="list" >
+          <ion-input class="input-connexion" type="text" formControlName="utilisateur"  placeholder="Nom d'utilisateur (celui qui apparait sur le site)" ></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.utilisateur">
+              <div class="error-message" *ngIf="validations_form.get('utilisateur').hasError(validation.type) && (validations_form.get('utilisateur').dirty || validations_form.get('utilisateur').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+          <ion-input class="input-connexion" type="text" formControlName="nom"  placeholder="Nom" ></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.nom">
+              <div class="error-message" *ngIf="validations_form.get('nom').hasError(validation.type) && (validations_form.get('nom').dirty || validations_form.get('nom').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+          <ion-input class="input-connexion" type="text" formControlName="prenom"  placeholder="Prenom" ></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.prenom">
+              <div class="error-message" *ngIf="validations_form.get('prenom').hasError(validation.type) && (validations_form.get('prenom').dirty || validations_form.get('prenom').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
           <ion-input class="input-connexion" type="text" formControlName="email" placeholder="Email" ></ion-input>
           <div class="validation-errors">
             <ng-container *ngFor="let validation of validation_messages.email">
