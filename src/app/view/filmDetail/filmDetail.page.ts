@@ -6,9 +6,17 @@ import { NavController } from '@ionic/angular';
 /* Models */
 import { Movie } from "src/app/models/movie";
 import { Cast } from 'src/app/models/credit';
+import { Comment } from 'src/app/models/comment'
 
 /* Services */
 import { MovieService } from "src/app/services/movie/movie.service";
+import { CommentService } from "src/app/services/comment.service";
+import { AuthenticateService } from "src/app/services/authentication.service"
+
+/* Forms */
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+
+
 
 @Component({
   selector: "app-filmDetail",
@@ -21,20 +29,46 @@ export class filmDetailPage implements OnInit {
   movie: Movie;
   castList: Cast[] = [];
   similarMovies: Movie[] = [];
+  comments : any[] ;
   rate: number = 0;
+  validations_form: FormGroup;
+
 
   constructor(
     private navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
-    private movieService: MovieService ) {}
+    private movieService: MovieService,
+    private commentService: CommentService,
+    private authService: AuthenticateService,
+    private formBuilder: FormBuilder ) {}
 
   ngOnInit(): void {
     this.movieID = this.activatedRoute.snapshot.paramMap.get('movieID');
+    this.validations_form = this.formBuilder.group({
+      commentary: new FormControl('', Validators.compose([
+        Validators.required,
+      ])),
+      id_movie: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
+    });
     setTimeout(() => {
       this.getMovieCredit();
       this.getMovieDetail();
       this.getSimilarMovies();
-    }, 100);
+      //Show comments
+      this.fetchComments();
+      let commentRes = this.commentService.getCommentList(this.movieID);
+      commentRes.snapshotChanges().subscribe(res => {
+        this.comments = [];
+        res.forEach(item => {
+          let a = item.payload.toJSON();
+          a['date'] = item.key;
+          a['user'] = item.payload.child('user').val();
+          this.comments.push(a as Comment);
+        })
+      })
+    }, 1000);
   }
 
   navigateBack() {
@@ -57,5 +91,15 @@ export class filmDetailPage implements OnInit {
     this.movieService.getSimilarMovies(this.movieID).subscribe(d => {
       this.similarMovies = d;
     });
+  }
+
+  fetchComments(){
+    this.commentService.getCommentList(this.movieID).valueChanges().subscribe(res => {
+    })
+  }
+
+  sendComment(value){
+    this.commentService.addComment(value);
+
   }
 }

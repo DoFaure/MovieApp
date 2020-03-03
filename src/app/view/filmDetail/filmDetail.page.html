@@ -112,6 +112,38 @@
       </div>
     </ion-card>
 
+    <ion-card class="comment-card">
+      <div class="comments">
+        <ion-list class="comments-list" >
+          <ion-list-header class="title">
+            Commentaires
+          </ion-list-header>
+  
+          <ion-item *ngFor="let comment of comments">
+            <ion-avatar slot="start">
+              <img src="../assets/images/no-avatar.png">
+            </ion-avatar>
+            <ion-label class="ion-text-wrap">
+              <h2> {{comment.date | date:'short'}} - {{comment.user}} </h2>
+              <p>{{comment.comment}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <form class="form" name="commentForm"  [formGroup]="validations_form" (ngSubmit)="sendComment(validations_form.value)">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-input text="text" formControlName="commentary" placeholder="Commente"></ion-input>
+              <input type="hidden" formControlName="id_movie" [ngModel]="movie.id" /> 
+                <ion-button type="submit" >
+                    <ion-icon name="md-add"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-list>
+        </form>
+    
+      </div>
+    </ion-card>
+
     <ion-card class="similar-movie-card" *ngIf="similarMovies.length">
       <div class="similar-movies">
         <div class=title>

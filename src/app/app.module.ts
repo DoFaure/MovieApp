@@ -22,9 +22,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import * as firebase from 'firebase';
+/* Date Language */
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { LOCALE_ID } from '@angular/core';
 
-firebase.initializeApp(environment.firebase);
+registerLocaleData(localeFr, 'fr-FR');
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +39,7 @@ firebase.initializeApp(environment.firebase);
     HttpClientModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     FormsModule
   ],
@@ -45,7 +48,8 @@ firebase.initializeApp(environment.firebase);
     SplashScreen,
     AuthenticateService,
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: LOCALE_ID, useValue: 'fr-FR'} 
   ],
   exports: [
     FormsModule,
@@ -56,7 +60,3 @@ firebase.initializeApp(environment.firebase);
 export class AppModule {
   
 }
-
-
-
-
