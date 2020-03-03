@@ -22,6 +22,13 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+/* Date Language */
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(localeFr, 'fr-FR');
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -41,7 +48,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     SplashScreen,
     AuthenticateService,
     { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: LOCALE_ID, useValue: 'fr-FR'} 
   ],
   exports: [
     FormsModule,
@@ -52,7 +60,3 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 export class AppModule {
   
 }
-
-
-
-
