@@ -22,10 +22,6 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import * as firebase from 'firebase';
-
-firebase.initializeApp(environment.firebase);
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -36,7 +32,7 @@ firebase.initializeApp(environment.firebase);
     HttpClientModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     FormsModule
   ],
