@@ -15,7 +15,10 @@ export class AuthenticateService {
      .then((auth : any)=> {
         return this.afDatabase.database.ref('users/' + auth.user.uid).set({
           email: value.email,
-          uid: auth.user.uid
+          uid: auth.user.uid,
+          nom : value.nom,
+          prenom : value.prenom,
+          nomUtilisateur :  value.utilisateur
         }).then(function (){
           // send mail to the register user mail adress
           resolve(auth.user.sendEmailVerification())
