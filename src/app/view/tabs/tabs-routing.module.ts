@@ -86,7 +86,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tabList/tabList.module').then(m => m.Tab4PageModule)
+              import('../tabList/tabList.module').then(m => m.TabListModules)
           }
         ]
       },

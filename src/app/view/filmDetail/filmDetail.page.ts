@@ -13,6 +13,15 @@ import { MovieService } from "src/app/services/movie/movie.service";
 import { CommentService } from "src/app/services/comment.service";
 import { AuthenticateService } from "src/app/services/authentication.service"
 
+
+/* Services Listes */
+import { ListeService } from "src/app/services/liste.service"
+
+/* Model Liste */
+import { Liste } from "src/app/models/liste"
+
+
+
 /* Forms */
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
@@ -40,7 +49,8 @@ export class filmDetailPage implements OnInit {
     private movieService: MovieService,
     private commentService: CommentService,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder ) {}
+    private formBuilder: FormBuilder,
+    private listeService : ListeService) {}
 
   ngOnInit(): void {
     this.movieID = this.activatedRoute.snapshot.paramMap.get('movieID');
@@ -102,4 +112,28 @@ export class filmDetailPage implements OnInit {
     this.commentService.addComment(value);
 
   }
+
+  ajoutFilmFavoris(){
+    console.log("Passage dans Films Favoris");
+    this.listeService.ajoutContenu(this.movieID, this.movie.title, this.movie.poster_path, "FilmFavoris");
+  }
+
+  ajoutFilmAVoir() {
+    console.log("Passage dans Films A Voir");
+    this.listeService.ajoutContenu(this.movieID, this.movie.title, this.movie.poster_path, "FilmVoir");
+  }
+
+  deleteFilmFavoris() {
+    console.log("Passage dans Supression Films Favoris");
+    this.listeService.delete(this.movieID, "FilmFavoris");
+  }
+
+  deleteFilmAVoir() {
+    console.log("Passage dans Supression Films Favoris");
+    this.listeService.delete(this.movieID, "FilmAVoir");
+  }
+
+
+
+
 }

@@ -62,6 +62,28 @@
         </div>
       </div>
 
+      <ion-card>
+      
+            <ion-item>
+              <ion-button (click)="ajoutFilmFavoris()">
+                <p> Ajout Film Favoris </p>
+              </ion-button>
+            </ion-item>
+
+            <ion-item>
+              <ion-button (click)="deleteFilmFavoris()">
+                <p> Supprimer Film Favoris </p>
+              </ion-button>
+            </ion-item>
+
+            <ion-item>
+              <ion-button (click)="ajoutFilmAVoir()">
+                <p> Ajout Film à Voir </p>
+              </ion-button>
+            </ion-item>
+      
+      </ion-card>
+
       <!-- <div class="movie-user-actions">
         <ion-icon name="list" (click)="addMovieToList()"></ion-icon>
         <ion-icon [ngClass]="{'favorited': isFavorite}" name="heart" (click)="likeMovie()"></ion-icon>
@@ -143,6 +165,7 @@
     
       </div>
     </ion-card>
+
 
     <ion-card class="similar-movie-card" *ngIf="similarMovies.length">
       <div class="similar-movies">
