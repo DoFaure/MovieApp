@@ -111,7 +111,7 @@ export class filmDetailPage implements OnInit {
   }
 
   sendComment(value){
-    this.commentService.addCommentMovie(value);
+    this.commentService.addCommentMovie(value, this.movieID);
   }
 
   deleteComment(movie: string, date : string){

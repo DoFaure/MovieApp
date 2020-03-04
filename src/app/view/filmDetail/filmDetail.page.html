@@ -132,18 +132,16 @@
             </ion-label>
           </ion-item>
         </ion-list>
-        <form class="form" name="commentForm"  #myForm="ngForm"  [formGroup]="validations_form" (ngSubmit)="sendComment(validations_form.value)">
+        <form class="form" name="commentForm"  #myForm="ngForm"  [formGroup]="validations_form" (ngSubmit)="sendComment(validations_form.value); myForm.reset()">
           <ion-list lines="none">
             <ion-item>
               <ion-textarea text="text" formControlName="commentary" placeholder="Commente"></ion-textarea>
-              <input type="hidden" formControlName="id_movie" [ngModel]="movie.id" /> 
                 <ion-button type="submit" >
                     <ion-icon name="md-add"></ion-icon>
                 </ion-button>
             </ion-item>
         </ion-list>
         </form>
-    
       </div>
     </ion-card>
 

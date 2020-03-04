@@ -278,6 +278,35 @@ ion-back-button{
                 }
             }
         }
+
+        .comment-card {
+           
+            .comments {
+                padding: 20px 20px 20px 20px;
+                margin-bottom:0px;
+                height: 100%;
+                max-height: 500px;
+                display: flex;
+                flex-direction: column;
+    
+                .title {
+                    font-size: 21px;
+                    font-weight: 600;
+                } 
+                .comments-list{
+                    overflow: hidden;
+                    overflow-y: auto;
+                    ::-webkit-scrollbar {
+                      display: none;
+                    }
+
+                    .icon-delete{
+                        float:right;
+                        color:red;
+                    }
+                }           
+            }
+        }
         
         .similar-serie-card {
             margin-bottom:0px;

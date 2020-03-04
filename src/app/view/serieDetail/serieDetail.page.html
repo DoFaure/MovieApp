@@ -127,6 +127,40 @@
       </div> 
     </ion-card>
 
+    <ion-card class="comment-card">
+      <div class="comments">
+        <ion-list-header class="title">
+          Commentaires
+        </ion-list-header>
+        <ion-list class="comments-list" >
+          <ion-item *ngFor="let comment of comments">
+            <ion-avatar slot="start">
+              <img src="../assets/images/no-avatar.png">
+            </ion-avatar>
+            <ion-label class="ion-text-wrap">
+              <ion-button class="icon-delete" *ngIf="currentUser === comment.uid" icon-only (click) ="deleteComment(serie.id,comment.date)" size="small" fill="clear" >
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>      
+              <h2> {{comment.username}}</h2>
+              <h3> {{comment.date | date:'short'}} </h3>
+              <p>{{comment.comment}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <form class="form" name="commentForm"  #myForm="ngForm"  [formGroup]="validations_form" (ngSubmit)="sendComment(validations_form.value); myForm.reset()">
+          <ion-list lines="none">
+            <ion-item>
+              <ion-textarea text="text" formControlName="commentary" placeholder="Commente"></ion-textarea>
+                <ion-button type="submit" >
+                    <ion-icon name="md-add"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-list>
+        </form>
+
+      </div>
+    </ion-card>
+
     <ion-card class="similar-serie-card" *ngIf="similarSeries.length">
       <div class="similar-series">
         <div class=title>
