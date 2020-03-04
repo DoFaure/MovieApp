@@ -101,9 +101,6 @@ export class CommentService {
             message: 'Votre commentaire a bien été supprimé',
             buttons:  [{
               text: 'Ok',
-              handler: () => {
-                this.navCtrl.pop(); 
-              }
           }]
     });
     await alertPopup.present();
