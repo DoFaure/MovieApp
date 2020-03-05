@@ -8,24 +8,6 @@
 
 <ion-content>
   <loading-icon *ngIf="!movie"></loading-icon>
-  <!-- <div *ngIf="movie" class="content">
-    <ion-grid>
-      <ion-row align-items-center>
-        <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
-        onError="this.src = '../assets/images/no-image-poster.png'" />
-      </ion-row>
-      <ion-row>
-        <ion-item >
-          <ion-label>
-            <i>{{movie.vote_average}}</i>
-          </ion-label>
-          <ion-label>
-
-          </ion-label>
-        </ion-item>
-      </ion-row>
-    </ion-grid>
-  </div> -->
 
   <div *ngIf="movie" class="content">
 
@@ -60,6 +42,12 @@
         <div class="movie-genres">
           <span *ngFor="let genre of movie.genres">{{genre.name}}&nbsp;</span>
         </div>
+      </div>
+
+      <div class="movie-user-actions">
+        <ion-icon name="list" (click)="addMovieToList()"></ion-icon>
+        <ion-icon [ngClass]="{'favorited': favorite}" name="heart" (click)="ajoutFilmFavoris()"></ion-icon>
+        <ion-icon [ngClass]="{'selected': isOnWatchlist}" name="bookmark" (click)="addMovieToWatchList()"></ion-icon>
       </div>
 
       <ion-card>

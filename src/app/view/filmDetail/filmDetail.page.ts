@@ -41,6 +41,7 @@ export class filmDetailPage implements OnInit {
   comments : any[] ;
   rate: number = 0;
   validations_form: FormGroup;
+  private favorite: boolean = false;
 
 
   constructor(
