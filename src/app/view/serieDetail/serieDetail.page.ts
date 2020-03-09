@@ -10,6 +10,9 @@ import { Cast } from 'src/app/models/credit';
 /* Services */
 import { SerieService } from 'src/app/services/serie/serie.service'
 
+/* Services Listes */
+import { ListeService } from "src/app/services/liste.service"
+
 @Component({
   selector: 'app-serieDetail',
   templateUrl: './serieDetail.page.html',
@@ -26,7 +29,8 @@ export class SerieDetailPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
-    private serieService: SerieService ) {}
+    private serieService: SerieService,
+    private listeService: ListeService ) {}
 
   ngOnInit() {
     this.serieID = this.activatedRoute.snapshot.paramMap.get('serieID');
@@ -57,6 +61,26 @@ export class SerieDetailPage implements OnInit {
     this.serieService.getSimilarSerie(this.serieID).subscribe(d => {
       this.similarSeries = d;
     })
+  }
+
+  ajoutSerieFavoris() {
+    console.log("Passage dans Serie Favoris");
+    this.listeService.ajoutContenu(this.serieID, this.serie.name, this.serie.poster_path, "SerieFavoris");
+  }
+
+  ajoutSerieAVoir() {
+    console.log("Passage dans Serie A Voir");
+    this.listeService.ajoutContenu(this.serieID, this.serie.name, this.serie.poster_path, "SerieVoir");
+  }
+
+  deleteSerieFavoris() {
+    console.log("Passage dans Supression Serie Favoris");
+    this.listeService.delete(this.serieID, "SerieFavoris");
+  }
+
+  deleteSerieAVoir() {
+    console.log("Passage dans Supression Serie Favoris");
+    this.listeService.delete(this.serieID, "SerieVoir");
   }
 
 }

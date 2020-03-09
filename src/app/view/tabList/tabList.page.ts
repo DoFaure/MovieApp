@@ -44,7 +44,7 @@ export class TabList implements OnInit {
   /* ok */
   getFilmAVoir() {
 
-    this.listeService.getContenu("FilmAVoir").valueChanges().subscribe((values) => {
+    this.listeService.getContenu("FilmVoir").valueChanges().subscribe((values) => {
       // If you want to push in values, however this may lead to duplicates
       values.forEach((value) =>
         this.listeFilmAVoir = value,
@@ -58,7 +58,7 @@ export class TabList implements OnInit {
     });
   }
 
-  /* ok */
+
   getSerieFavoris() {
     this.listeService.getContenu("SerieFavoris").valueChanges().subscribe((values) => {
       // If you want to push in values, however this may lead to duplicates
@@ -70,12 +70,13 @@ export class TabList implements OnInit {
       // If you want Moniteurs to be just the new data
       console.log(this.listeSerieFavoris)
       this.listeSerieFavoris = values;
+      console.log("Passage dans le GetSerieFavoris")
     });
   }
 
-  /* ok */
+
   getSerieAVoir() {
-    this.listeService.getContenu("SerieAVoir").valueChanges().subscribe((values) => {
+    this.listeService.getContenu("SerieVoir").valueChanges().subscribe((values) => {
       // If you want to push in values, however this may lead to duplicates
       values.forEach((value) =>
         this.listeSerieAVoir = value,
@@ -85,6 +86,7 @@ export class TabList implements OnInit {
       // If you want Moniteurs to be just the new data
       console.log(this.listeSerieAVoir)
       this.listeSerieAVoir = values;
+      console.log("Passage dans le GetSerieVoir")
     });
   }
 

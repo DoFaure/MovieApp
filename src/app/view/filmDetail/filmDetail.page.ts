@@ -131,7 +131,7 @@ export class filmDetailPage implements OnInit {
 
   deleteFilmAVoir() {
     console.log("Passage dans Supression Films Favoris");
-    this.listeService.delete(this.movieID, "FilmAVoir");
+    this.listeService.delete(this.movieID, "FilmVoir");
   }
 
 

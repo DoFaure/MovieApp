@@ -123,6 +123,34 @@ ion-back-button{
 
         }
 
+        .movie-user-actions {
+            width: 100%;
+            height: 45px;
+            display: flex;
+            color: black;
+            font-size: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            justify-content: space-between;
+            align-items: center;
+            border: medium;
+            
+            ion-icon {
+                padding: 10px;
+            }
+
+            .favorited {
+                color: purple;
+            }
+
+            .selected {
+                color:purple;
+            }
+        
+        }
+
         // .serie-user-actions {
         //     width: 100%;
         //     height: 45px;

@@ -45,9 +45,10 @@
       </div>
 
       <div class="movie-user-actions">
+        
         <ion-icon name="list" (click)="addMovieToList()"></ion-icon>
         <ion-icon [ngClass]="{'favorited': favorite}" name="heart" (click)="ajoutFilmFavoris()"></ion-icon>
-        <ion-icon [ngClass]="{'selected': isOnWatchlist}" name="bookmark" (click)="addMovieToWatchList()"></ion-icon>
+        <ion-icon [ngClass]="{'selected': isOnWatchlist}" name="bookmark" (click)="ajoutFilmAVoir()"></ion-icon>
       </div>
 
       <ion-card>
