@@ -12,6 +12,7 @@ import { Comment } from 'src/app/models/comment'
 import { MovieService } from "src/app/services/movie/movie.service";
 import { CommentService } from "src/app/services/comment.service";
 import { AuthenticateService } from "src/app/services/authentication.service"
+import { NoteService } from "src/app/services/note.service"
 
 
 /* Services Listes */
@@ -24,16 +25,17 @@ import { ListeService } from "src/app/services/liste.service"
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TabListModules } from '../tabList/tabList.module';
 
-
-
 @Component({
   selector: "app-filmDetail",
   templateUrl: "filmDetail.page.html",
   styleUrls: ["filmDetail.page.scss"]
 })
 export class filmDetailPage implements OnInit {
+
   
   public movieID: string = "";
+  currentUser: string =" "
+  private movieID: string = "";
   movie: Movie;
   castList: Cast[] = [];
   similarMovies: Movie[] = [];
@@ -41,9 +43,9 @@ export class filmDetailPage implements OnInit {
   rate: number = 0;
   validations_form: FormGroup;
   private favorite: boolean = false;
-
   listeFilmFavoris: any;
   listeFilmAVoir: any;
+  rateAverage : any = null;
 
 
   constructor(
@@ -57,6 +59,11 @@ export class filmDetailPage implements OnInit {
 
   ngOnInit(): void {
 
+
+    private noteService: NoteService ) {}
+
+  ngOnInit(): void {
+    this.currentUser = this.authService.userDetails().uid
     this.movieID = this.activatedRoute.snapshot.paramMap.get('movieID');
     this.validations_form = this.formBuilder.group({
       commentary: new FormControl('', Validators.compose([
@@ -70,15 +77,25 @@ export class filmDetailPage implements OnInit {
       this.getMovieCredit();
       this.getMovieDetail();
       this.getSimilarMovies();
+      //Note
+      this.getNoteAuth();
+      this.getNoteAverage()
       //Show comments
       this.fetchComments();
-      let commentRes = this.commentService.getCommentList(this.movieID);
+      let commentRes = this.commentService.getCommentMovieList(this.movieID);
       commentRes.snapshotChanges().subscribe(res => {
         this.comments = [];
         res.forEach(item => {
           let a = item.payload.toJSON();
           a['date'] = item.key;
-          a['user'] = item.payload.child('user').val();
+          a['uid'] = item.payload.child('user').val();
+          this.authService.getUsername(item.payload.child('user').val())
+            .then(username=>{
+              a['username'] = username.val().nomUtilisateur
+             })
+             .catch(error=>{
+             console.log('OOPS, error', error)
+             })
           this.comments.push(a as Comment);
         })
       })
@@ -112,13 +129,16 @@ export class filmDetailPage implements OnInit {
   }
 
   fetchComments(){
-    this.commentService.getCommentList(this.movieID).valueChanges().subscribe(res => {
+    this.commentService.getCommentMovieList(this.movieID).valueChanges().subscribe(res => {
     })
   }
 
   sendComment(value){
-    this.commentService.addComment(value);
+    this.commentService.addCommentMovie(value, this.movieID);
+  }
 
+  deleteComment(movie: string, date : string){
+    this.commentService.deleteCommentMovie(movie, date);
   }
 
   ajoutFilmFavoris(){
@@ -204,6 +224,38 @@ export class filmDetailPage implements OnInit {
 
   message(){
     alert("Cette fonctionnalité n'est pas encore disponible");
+  }
+
+  noteMovie(i: any) {
+    if (i == this.rate) {
+      this.noteService.downNoteCumulMovie(this.movieID, this.rate)
+      this.rate = 0;
+      this.noteService.deleteNoteMovie(this.movieID);
+      this.noteService.downNumberNoteMovie(this.movieID)
+      this.noteService.updateNoteAverageMovie(this.movieID)
+    }
+    else {
+      this.noteService.updateNoteCumulMovie(this.movieID, i , this.rate);
+      this.rate = i;
+      this.noteService.upNumberNoteMovie(this.movieID)
+      setTimeout(() => {
+        this.noteService.addNoteMovie(this.movieID, this.rate)
+      }, 400);
+      
+      
+      this.noteService.updateNoteAverageMovie(this.movieID)
+    }
+  }
+
+
+  getNoteAuth(){
+   this.noteService.getNoteMovieAuth(this.movieID).valueChanges().subscribe(result => this.rate = result.note );
+  }
+
+  getNoteAverage(){
+    this.noteService.getNoteAverageMovie(this.movieID).valueChanges().subscribe( item => { 
+      this.rateAverage = item.note_moyenne
+    });
   }
 
 }

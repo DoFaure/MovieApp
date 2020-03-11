@@ -56,4 +56,10 @@ export class AuthenticateService {
   userDetails(){
     return this.afAuth.auth.currentUser;
   }
+
+  getUsername(id:string){
+    return this.afDatabase.database.ref('/users/'+id)
+    .once("value", function(snapshot) { 
+      return snapshot.val().nomUtilisateur });
+  }
 }

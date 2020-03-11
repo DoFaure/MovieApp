@@ -23,7 +23,7 @@
       </div>
 
       <div class="movie-rating">
-        <span>{{movie.vote_average}}</span>
+        <span>{{rateAverage}}</span>
       </div>
     </div>
 
@@ -43,25 +43,38 @@
           <span *ngFor="let genre of movie.genres">{{genre.name}}&nbsp;</span>
         </div>
       </div>
+    
+      <div class="movie-user-actions">
 
-    <div class="movie-user-actions">
-    
-      <ion-icon name="list" (click)="message()"></ion-icon>
-    
-      <ion-icon *ngIf="getCompareFilmFavoris()" color="danger" [ngClass]="{'favorited': favorite}" name="heart"
-        (click)="deleteFilmFavoris()"></ion-icon>
-    
-      <ion-icon *ngIf="!getCompareFilmFavoris()" color="medium" [ngClass]="{'favorited': favorite}" name="heart"
-        (click)="ajoutFilmFavoris() ; deleteFilmAVoir()"></ion-icon>
-    
-      <ion-icon *ngIf="getCompareFilmEnvie()" color="warning" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
-        (click)="deleteFilmAVoir()"></ion-icon>
-    
-      <ion-icon *ngIf="!getCompareFilmEnvie()" color="medium" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
-        (click)="ajoutFilmAVoir() ; deleteFilmFavoris()"></ion-icon>
-    
-    </div>
-    
+        <ion-icon name="list" (click)="message()"></ion-icon>
+
+        <ion-icon *ngIf="getCompareFilmFavoris()" color="danger" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="deleteFilmFavoris()"></ion-icon>
+
+        <ion-icon *ngIf="!getCompareFilmFavoris()" color="medium" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="ajoutFilmFavoris() ; deleteFilmAVoir()"></ion-icon>
+
+        <ion-icon *ngIf="getCompareFilmEnvie()" color="warning" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="deleteFilmAVoir()"></ion-icon>
+
+        <ion-icon *ngIf="!getCompareFilmEnvie()" color="medium" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="ajoutFilmAVoir() ; deleteFilmFavoris()"></ion-icon>
+
+      </div>
+      
+      <div class="second-movie-user-actions">
+
+        <div class="movie-rate">
+          <ion-icon name="star" 
+          *ngFor="let i of [1,2,3,4,5,6,7,8,9,10];" 
+          [ngClass]="{'active': rate >= i}"
+          (click)="noteMovie(i)">
+          </ion-icon>
+        </div>
+
+      </div>
+
+
     <ion-card class="movie-sub-info-card">
       <div class="overview">
         <div class=title>
@@ -91,33 +104,34 @@
 
     <ion-card class="comment-card">
       <div class="comments">
+        <ion-list-header class="title">
+          Commentaires
+        </ion-list-header>
         <ion-list class="comments-list" >
-          <ion-list-header class="title">
-            Commentaires
-          </ion-list-header>
-  
           <ion-item *ngFor="let comment of comments">
             <ion-avatar slot="start">
               <img src="../assets/images/no-avatar.png">
             </ion-avatar>
             <ion-label class="ion-text-wrap">
-              <h2> {{comment.date | date:'short'}} - {{comment.user}} </h2>
+              <ion-button class="icon-delete" *ngIf="currentUser === comment.uid" icon-only (click) ="deleteComment(movie.id,comment.date)" size="small" fill="clear" >
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>      
+              <h2> {{comment.username}}</h2>
+              <h3> {{comment.date | date:'short'}} </h3>
               <p>{{comment.comment}}</p>
             </ion-label>
           </ion-item>
         </ion-list>
-        <form class="form" name="commentForm"  [formGroup]="validations_form" (ngSubmit)="sendComment(validations_form.value)">
+        <form class="form" name="commentForm"  #myForm="ngForm"  [formGroup]="validations_form" (ngSubmit)="sendComment(validations_form.value); myForm.reset()">
           <ion-list lines="none">
             <ion-item>
-              <ion-input text="text" formControlName="commentary" placeholder="Commente"></ion-input>
-              <input type="hidden" formControlName="id_movie" [ngModel]="movie.id" /> 
+              <ion-textarea text="text" formControlName="commentary" placeholder="Commente"></ion-textarea>
                 <ion-button type="submit" >
                     <ion-icon name="md-add"></ion-icon>
                 </ion-button>
             </ion-item>
         </ion-list>
         </form>
-    
       </div>
     </ion-card>
 

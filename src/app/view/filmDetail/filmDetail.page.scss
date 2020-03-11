@@ -8,14 +8,13 @@ ion-back-button{
   background-color : #808080;
 }
 
+
 .red {
   background-color :#FF0000;
 }
 .green {
   background-color : #008000;
 }
-
-//////////////////////////////////////////
 
 ::-webkit-scrollbar,
 *::-webkit-scrollbar {
@@ -54,7 +53,7 @@ ion-back-button{
             right: 10px;
             height: 44px;
             width: 44px;
-            background-color: #0000004d;
+            background-color: black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -136,6 +135,37 @@ ion-back-button{
             }
         }
 
+        .second-movie-user-actions {
+            display: flex;
+            padding: 5px 5px;            
+            background-color: white;
+            border-top: 2px solid #cd4851;
+            border-bottom: 2px solid #cd4851;
+            margin-top: 2px;
+            
+            .movie-rate {
+                padding: 0px 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 25px;
+                width: 100%; 
+                color: grey;
+                
+
+                ion-icon {
+                    padding-left: 5px;
+
+                    &:first-child {
+                        padding-left: 0px;
+                    }
+                }
+
+                .active {
+                    color:purple;
+                }
+            }
+        }
 
         .overview {
             padding: 20px 20px 2px 20px;
@@ -213,14 +243,31 @@ ion-back-button{
         }
 
         .comment-card {
-            margin-bottom:0px;
-
+           
             .comments {
                 padding: 20px 20px 20px 20px;
+                margin-bottom:0px;
+                height: 100%;
+                max-height: 500px;
+                display: flex;
+                flex-direction: column;
+    
                 .title {
                     font-size: 21px;
                     font-weight: 600;
-                }            
+                } 
+                .comments-list{
+                    overflow: hidden;
+                    overflow-y: auto;
+                    ::-webkit-scrollbar {
+                      display: none;
+                    }
+
+                    .icon-delete{
+                        float:right;
+                        color:red;
+                    }
+                }           
             }
         }
         

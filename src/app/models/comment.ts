@@ -1,6 +1,7 @@
 export interface Comment {
-    uid: number,
-    comment: string
+    uid: string,
+    username: string,
+    comment: string,
     date: Date
 }
 

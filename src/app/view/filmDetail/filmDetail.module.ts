@@ -4,6 +4,9 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { Pipe, PipeTransform } from '@angular/core';
+import { orderBy } from 'lodash';
+
 import { filmDetailPage } from './filmDetail.page';
 import { ComponentsModule } from '../../components/components.module';
 

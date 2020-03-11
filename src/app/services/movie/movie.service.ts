@@ -10,10 +10,6 @@ import { Movie, MovieResponse } from 'src/app/models/movie';
 // import { TrailerResponse } from 'src/app/models/trailer';
 import { Cast, CreditResponse } from 'src/app/models/credit';
 
-/* Services */
-// import { AuthService } from '../auth/auth.service';
-
-
 @Injectable({
   providedIn: 'root'
 })
