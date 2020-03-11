@@ -7,7 +7,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController, AlertController } from '@ionic/angular';
 
 
-
 @Injectable({
   providedIn: 'root'
 })

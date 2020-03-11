@@ -11,11 +11,10 @@ import { Cast } from 'src/app/models/credit';
 import { SerieService } from 'src/app/services/serie/serie.service'
 import { CommentService } from "src/app/services/comment.service";
 import { AuthenticateService } from "src/app/services/authentication.service"
+import { NoteService } from "src/app/services/note.service"
 
 /* Forms */
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { resolve } from 'url';
-
 
 @Component({
   selector: 'app-serieDetail',
@@ -32,6 +31,7 @@ export class SerieDetailPage implements OnInit {
   similarSeries: Serie[] = [];
   rate: number = 0;
   validations_form: FormGroup;
+  rateAverage : any = null;
 
 
   constructor(
@@ -40,7 +40,8 @@ export class SerieDetailPage implements OnInit {
     private serieService: SerieService,
     private commentService: CommentService,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder ) {}
+    private formBuilder: FormBuilder,
+    private noteService: NoteService ) {}
 
   ngOnInit() {
     this.currentUser = this.authService.userDetails().uid
@@ -57,6 +58,9 @@ export class SerieDetailPage implements OnInit {
       this.getSerieCredit();
       this.getSerieDetail();
       this.getSimilarSeries();
+      //Note
+      this.getNoteAuth();
+      this.getNoteAverage()
       //Show comments
       this.fetchComments();
       let commentRes = this.commentService.getCommentSerieList(this.serieID);
@@ -112,5 +116,37 @@ export class SerieDetailPage implements OnInit {
 
   deleteComment(serie: string, date : string){
     this.commentService.deleteCommentSerie(serie, date);
+  }
+
+  noteSerie(i: any) {
+    if (i == this.rate) {
+      this.rate = 0;
+      this.noteService.deleteNoteSerie(this.serieID);
+      this.noteService.downNumberNoteSerie(this.serieID)
+      this.noteService.downNoteCumulSerie(this.serieID, this.rate)
+      this.noteService.updateNoteAverageSerie(this.serieID)
+    }
+    else {
+      this.noteService.updateNoteCumulSerie(this.serieID, i , this.rate);
+      this.rate = i;
+      this.noteService.upNumberNoteSerie(this.serieID)
+      setTimeout(() => {
+        this.noteService.addNoteSerie(this.serieID, this.rate)
+      }, 500);
+      
+      
+      this.noteService.updateNoteAverageSerie(this.serieID)
+    }
+  }
+
+
+  getNoteAuth(){
+   this.noteService.getNoteSerieAuth(this.serieID).valueChanges().subscribe(result => this.rate = result.note );
+  }
+
+  getNoteAverage(){
+    this.noteService.getNoteAverageSerie(this.serieID).valueChanges().subscribe( item => { 
+      this.rateAverage = item.note_moyenne
+    });
   }
 }

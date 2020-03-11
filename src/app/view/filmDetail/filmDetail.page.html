@@ -41,7 +41,7 @@
       </div>
 
       <div class="movie-rating">
-        <span>{{movie.vote_average}}</span>
+        <span>{{rateAverage}}</span>
       </div>
     </div>
 
@@ -69,20 +69,17 @@
         <ion-icon name="share" (click)="shareMovie()"></ion-icon>
       </div> -->
 
-      <!-- <div class="second-movie-user-actions">
+      <div class="second-movie-user-actions">
+
         <div class="movie-rate">
           <ion-icon name="star" 
-          *ngFor="let i of [1,2,3,4,5];" 
+          *ngFor="let i of [1,2,3,4,5,6,7,8,9,10];" 
           [ngClass]="{'active': rate >= i}"
-          (click)="rateMovie(i)"
-          ></ion-icon>
+          (click)="noteMovie(i)">
+          </ion-icon>
         </div>
 
-        <div class="movie-play" (click)="showMovieTrailer();">
-          <ion-icon name="play"></ion-icon>
-          <span>Trailer</span>
-        </div>
-      </div> -->
+      </div>
 
 
     <ion-card class="movie-sub-info-card">
