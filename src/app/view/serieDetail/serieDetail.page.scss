@@ -7,35 +7,6 @@ ion-back-button{
     display: none;
 }
 
-// .content {
-//     color: white;
-//     padding-bottom: 20px;
-    
-//     .serie-header {
-//         width: 100%;
-//         height: 100%;
-//         position: relative;
-//         .serie-backdrop-image {
-//             position: relative; //top: -3vw;   
-//             border-radius: 0;
-//         }
-//         .serie-poster {
-//             position: absolute;
-//             bottom: -20vw; 
-//             height: 39vw;
-//             left: 20px;
-//             box-shadow: 0px 0 10px 2px #383636;
-//             img {
-//                 width: 26vw;
-//                 height: 39vw;
-//                 z-index: 4;
-//             }
-//         }
-//     }
-// }
-
-
-
 .content {
     color: purple;
     padding-bottom: 20px;
@@ -123,7 +94,7 @@ ion-back-button{
 
         }
 
-        .movie-user-actions {
+        .serie-user-actions {
             width: 100%;
             height: 45px;
             display: flex;
@@ -150,71 +121,6 @@ ion-back-button{
             }
         
         }
-
-        // .serie-user-actions {
-        //     width: 100%;
-        //     height: 45px;
-        //     display: flex;
-        //     color: white;
-        //     font-size: 30px;
-        //     padding-left: 30px;
-        //     padding-right: 30px;
-        //     margin-top: 10px;
-        //     margin-bottom: 10px;
-        //     justify-content: space-between;
-        //     align-items: center;
-            
-        //     ion-icon {
-        //         padding: 10px;
-        //     }
-
-        //     .favorited {
-        //         color: #cd4851;
-        //     }
-
-        //     .selected {
-        //         color: #ffd31a;
-        //     }
-        // }
-
-        // .second-serie-user-actions {
-        //     display: flex;
-        //     padding: 10px 0px;            
-        //     background-color: #0a0a0a;
-        //     border-bottom: 3px solid #cd4851;
-            
-        //     .serie-rate {
-        //         padding: 0px 0px;
-        //         display: flex;
-        //         justify-content: center;
-        //         align-items: center;
-        //         font-size: 25px;
-        //         width: 50%; 
-        //         border-right: 1px solid #b1b1b1;
-
-        //         ion-icon {
-        //             padding-left: 5px;
-
-        //             &:first-child {
-        //                 padding-left: 0px;
-        //             }
-        //         }
-
-        //         .active {
-        //             color: #cd4851;
-        //         }
-        //     }
-
-        //     .serie-play {
-        //         padding: 0px 0px;
-        //         display: flex;
-        //         justify-content: center;
-        //         align-items: center;
-        //         font-size: 21px;
-        //         width: 50%;
-        //         border-left: 1px solid #b1b1b1;
-        //     }
-        // }
 
         .overview {
             padding: 20px 20px 2px 20px;

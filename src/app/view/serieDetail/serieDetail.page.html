@@ -7,26 +7,6 @@
 </ion-header>
 
 <ion-content>
-  <!-- <loading-icon *ngIf="!serie"></loading-icon> -->
-  <!-- <div *ngIf="serie" class="content">
-    <ion-grid>
-      <ion-row align-items-center>
-        <img src="https://image.tmdb.org/t/p/w500/{{serie.poster_path}}"
-        onError="this.src = '../assets/images/no-image-poster.png'" />
-      </ion-row>
-      <ion-row>
-        <ion-item >
-          <ion-label>
-            <i>{{serie.vote_average}}</i>
-          </ion-label>
-          <ion-label>
-
-          </ion-label>
-        </ion-item>
-      </ion-row>
-    </ion-grid>
-  </div> -->
-
   <div *ngIf="serie" class="content">
 
     <div class="serie-header">
@@ -63,47 +43,23 @@
       </div>
 
 
-      <div class="movie-user-actions">
+      <div class="serie-user-actions">
     
-      <ion-icon name="list" (click)="message()"></ion-icon>
+        <ion-icon name="list" (click)="message()"></ion-icon>
+      
+        <ion-icon *ngIf="getCompareSerieFavoris()" color="danger" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="deleteSerieFavoris()"></ion-icon>
+      
+        <ion-icon *ngIf="!getCompareSerieFavoris()" color="medium" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="ajoutSerieFavoris() ; deleteSerieAVoir()"></ion-icon>
+      
+        <ion-icon *ngIf="getCompareSerieEnvie()" color="warning" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="deleteSerieAVoir()"></ion-icon>
+      
+        <ion-icon *ngIf="!getCompareSerieEnvie()" color="medium" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="ajoutSerieAVoir() ; deleteSerieFavoris()"></ion-icon>
     
-      <ion-icon *ngIf="getCompareSerieFavoris()" color="danger" [ngClass]="{'favorited': favorite}" name="heart"
-        (click)="deleteSerieFavoris()"></ion-icon>
-    
-      <ion-icon *ngIf="!getCompareSerieFavoris()" color="medium" [ngClass]="{'favorited': favorite}" name="heart"
-        (click)="ajoutSerieFavoris() ; deleteSerieAVoir()"></ion-icon>
-    
-      <ion-icon *ngIf="getCompareSerieEnvie()" color="warning" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
-        (click)="deleteSerieAVoir()"></ion-icon>
-    
-      <ion-icon *ngIf="!getCompareSerieEnvie()" color="medium" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
-        (click)="ajoutSerieAVoir() ; deleteSerieFavoris()"></ion-icon>
-    
-    </div>
-
-
-      <!-- <div class="serie-user-actions">
-        <ion-icon name="list" (click)="addMovieToList()"></ion-icon>
-        <ion-icon [ngClass]="{'favorited': isFavorite}" name="heart" (click)="likeMovie()"></ion-icon>
-        <ion-icon [ngClass]="{'selected': isOnWatchlist}" name="bookmark" (click)="addMovieToWatchList()"></ion-icon>
-        <ion-icon name="share" (click)="shareMovie()"></ion-icon>
-      </div> -->
-
-      <!-- <div class="second-serie-user-actions">
-        <div class="serie-rate">
-          <ion-icon name="star" 
-          *ngFor="let i of [1,2,3,4,5];" 
-          [ngClass]="{'active': rate >= i}"
-          (click)="rateMovie(i)"
-          ></ion-icon>
-        </div>
-
-        <div class="serie-play" (click)="showMovieTrailer();">
-          <ion-icon name="play"></ion-icon>
-          <span>Trailer</span>
-        </div>
-      </div> -->
-
+      </div>
 
     <ion-card class="serie-sub-info-card">
       <div class="overview">
