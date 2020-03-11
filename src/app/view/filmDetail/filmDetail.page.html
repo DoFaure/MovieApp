@@ -8,24 +8,6 @@
 
 <ion-content>
   <loading-icon *ngIf="!movie"></loading-icon>
-  <!-- <div *ngIf="movie" class="content">
-    <ion-grid>
-      <ion-row align-items-center>
-        <img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
-        onError="this.src = '../assets/images/no-image-poster.png'" />
-      </ion-row>
-      <ion-row>
-        <ion-item >
-          <ion-label>
-            <i>{{movie.vote_average}}</i>
-          </ion-label>
-          <ion-label>
-
-          </ion-label>
-        </ion-item>
-      </ion-row>
-    </ion-grid>
-  </div> -->
 
   <div *ngIf="movie" class="content">
 
@@ -61,14 +43,25 @@
           <span *ngFor="let genre of movie.genres">{{genre.name}}&nbsp;</span>
         </div>
       </div>
+    
+      <div class="movie-user-actions">
 
-      <!-- <div class="movie-user-actions">
-        <ion-icon name="list" (click)="addMovieToList()"></ion-icon>
-        <ion-icon [ngClass]="{'favorited': isFavorite}" name="heart" (click)="likeMovie()"></ion-icon>
-        <ion-icon [ngClass]="{'selected': isOnWatchlist}" name="bookmark" (click)="addMovieToWatchList()"></ion-icon>
-        <ion-icon name="share" (click)="shareMovie()"></ion-icon>
-      </div> -->
+        <ion-icon name="list" (click)="message()"></ion-icon>
 
+        <ion-icon *ngIf="getCompareFilmFavoris()" color="danger" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="deleteFilmFavoris()"></ion-icon>
+
+        <ion-icon *ngIf="!getCompareFilmFavoris()" color="medium" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="ajoutFilmFavoris() ; deleteFilmAVoir()"></ion-icon>
+
+        <ion-icon *ngIf="getCompareFilmEnvie()" color="warning" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="deleteFilmAVoir()"></ion-icon>
+
+        <ion-icon *ngIf="!getCompareFilmEnvie()" color="medium" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="ajoutFilmAVoir() ; deleteFilmFavoris()"></ion-icon>
+
+      </div>
+      
       <div class="second-movie-user-actions">
 
         <div class="movie-rate">
@@ -141,6 +134,7 @@
         </form>
       </div>
     </ion-card>
+
 
     <ion-card class="similar-movie-card" *ngIf="similarMovies.length">
       <div class="similar-movies">

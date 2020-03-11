@@ -42,6 +42,24 @@
         </div>
       </div>
 
+      <div class="serie-user-actions">
+    
+        <ion-icon name="list" (click)="message()"></ion-icon>
+      
+        <ion-icon *ngIf="getCompareSerieFavoris()" color="danger" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="deleteSerieFavoris()"></ion-icon>
+      
+        <ion-icon *ngIf="!getCompareSerieFavoris()" color="medium" [ngClass]="{'favorited': favorite}" name="heart"
+          (click)="ajoutSerieFavoris() ; deleteSerieAVoir()"></ion-icon>
+      
+        <ion-icon *ngIf="getCompareSerieEnvie()" color="warning" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="deleteSerieAVoir()"></ion-icon>
+      
+        <ion-icon *ngIf="!getCompareSerieEnvie()" color="medium" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+          (click)="ajoutSerieAVoir() ; deleteSerieFavoris()"></ion-icon>
+    
+      </div>
+      
       <div class="second-serie-user-actions">
         <div class="serie-rate">
           <ion-icon name="star" 
@@ -50,9 +68,7 @@
           (click)="noteSerie(i)"
           ></ion-icon>
         </div>
-
       </div>
-
 
     <ion-card class="serie-sub-info-card">
       <div class="overview">

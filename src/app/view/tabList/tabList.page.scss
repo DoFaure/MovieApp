@@ -1,1 +1,40 @@
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  
+  .movie{
+    display: inline-block;
+    width: 175px;
 
+    .poster {
+  
+      // width: 50%;   
+      width: 175px;
+      height: 250px;
+        
+        img {
+            width: 175px;
+            height: 250px;
+            padding: 10px;
+            border-radius: 15px;
+
+        }
+    }
+
+    .movie-title{
+      overflow: hidden;
+      padding-right: 4px;
+      text-align: center;
+      width: 165px;
+      padding: 0px 10px;
+
+      .title{
+        width: 160px;
+        float: left;
+      }
+    }
+
+  }
+
+}

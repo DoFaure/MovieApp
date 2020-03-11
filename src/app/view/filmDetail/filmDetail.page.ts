@@ -14,8 +14,16 @@ import { CommentService } from "src/app/services/comment.service";
 import { AuthenticateService } from "src/app/services/authentication.service"
 import { NoteService } from "src/app/services/note.service"
 
+
+/* Services Listes */
+import { ListeService } from "src/app/services/liste.service"
+
+
+
+
 /* Forms */
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { TabListModules } from '../tabList/tabList.module';
 
 @Component({
   selector: "app-filmDetail",
@@ -24,6 +32,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class filmDetailPage implements OnInit {
 
+  
+  public movieID: string = "";
   currentUser: string =" "
   private movieID: string = "";
   movie: Movie;
@@ -32,6 +42,9 @@ export class filmDetailPage implements OnInit {
   comments : any[] ;
   rate: number = 0;
   validations_form: FormGroup;
+  private favorite: boolean = false;
+  listeFilmFavoris: any;
+  listeFilmAVoir: any;
   rateAverage : any = null;
 
 
@@ -42,6 +55,11 @@ export class filmDetailPage implements OnInit {
     private commentService: CommentService,
     private authService: AuthenticateService,
     private formBuilder: FormBuilder,
+    private listeService : ListeService) {}
+
+  ngOnInit(): void {
+
+
     private noteService: NoteService ) {}
 
   ngOnInit(): void {
@@ -82,6 +100,10 @@ export class filmDetailPage implements OnInit {
         })
       })
     }, 1000);
+
+    this.getFilmFavoris();
+    this.getFilmAVoir();
+
   }
 
   navigateBack() {
@@ -117,6 +139,91 @@ export class filmDetailPage implements OnInit {
 
   deleteComment(movie: string, date : string){
     this.commentService.deleteCommentMovie(movie, date);
+  }
+
+  ajoutFilmFavoris(){
+    console.log("Passage dans Films Favoris");
+    this.listeService.ajoutContenu(this.movieID, this.movie.title, this.movie.poster_path, "FilmFavoris");
+  }
+
+  ajoutFilmAVoir() {
+
+    this.listeService.ajoutContenu(this.movieID, this.movie.title, this.movie.poster_path, "FilmVoir");
+  }
+
+  deleteFilmFavoris() {
+
+    this.listeService.delete(this.movieID, "FilmFavoris");
+  }
+
+  deleteFilmAVoir() {
+
+    this.listeService.delete(this.movieID, "FilmVoir");
+  }
+
+  /* ok */
+  getFilmFavoris() {
+
+    this.listeService.getContenu("FilmFavoris").valueChanges().subscribe((values) => {
+      // If you want to push in values, however this may lead to duplicates
+      values.forEach((value) =>
+        this.listeFilmFavoris = value,
+
+      );
+
+      // If you want Moniteurs to be just the new data
+      console.log(this.listeFilmFavoris)
+      this.listeFilmFavoris = values;
+    });
+  }
+
+  getFilmAVoir() {
+
+    this.listeService.getContenu("FilmVoir").valueChanges().subscribe((values) => {
+      // If you want to push in values, however this may lead to duplicates
+      values.forEach((value) =>
+        this.listeFilmAVoir = value,
+
+      );
+
+      // If you want Moniteurs to be just the new data
+
+      this.listeFilmAVoir = values;
+
+    });
+  }
+
+  getCompareFilmFavoris() : boolean {
+
+    for(let element of this.listeFilmFavoris){
+      console.log(element);
+      if(this.movieID == element.id_coucou){
+
+        return true;
+      }
+    }
+    
+    return false;
+    
+  }
+
+  getCompareFilmEnvie(): boolean {
+
+    for (let element of this.listeFilmAVoir) {
+      console.log(element);
+      if (this.movieID == element.id_coucou) {
+
+        return true;
+      }
+    }
+
+
+    return false;
+
+  }
+
+  message(){
+    alert("Cette fonctionnalité n'est pas encore disponible");
   }
 
   noteMovie(i: any) {
