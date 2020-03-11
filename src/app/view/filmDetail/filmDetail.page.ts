@@ -121,10 +121,10 @@ export class filmDetailPage implements OnInit {
 
   noteMovie(i: any) {
     if (i == this.rate) {
+      this.noteService.downNoteCumulMovie(this.movieID, this.rate)
       this.rate = 0;
       this.noteService.deleteNoteMovie(this.movieID);
       this.noteService.downNumberNoteMovie(this.movieID)
-      this.noteService.downNoteCumulMovie(this.movieID, this.rate)
       this.noteService.updateNoteAverageMovie(this.movieID)
     }
     else {
@@ -133,7 +133,7 @@ export class filmDetailPage implements OnInit {
       this.noteService.upNumberNoteMovie(this.movieID)
       setTimeout(() => {
         this.noteService.addNoteMovie(this.movieID, this.rate)
-      }, 500);
+      }, 400);
       
       
       this.noteService.updateNoteAverageMovie(this.movieID)
