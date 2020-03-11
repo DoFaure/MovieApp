@@ -32,8 +32,6 @@ import { TabListModules } from '../tabList/tabList.module';
 })
 export class filmDetailPage implements OnInit {
 
-  
-  public movieID: string = "";
   currentUser: string =" "
   private movieID: string = "";
   movie: Movie;
@@ -55,11 +53,7 @@ export class filmDetailPage implements OnInit {
     private commentService: CommentService,
     private authService: AuthenticateService,
     private formBuilder: FormBuilder,
-    private listeService : ListeService) {}
-
-  ngOnInit(): void {
-
-
+    private listeService : ListeService,
     private noteService: NoteService ) {}
 
   ngOnInit(): void {
