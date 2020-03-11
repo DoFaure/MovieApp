@@ -44,34 +44,23 @@
         </div>
       </div>
 
-      <div class="movie-user-actions">
-        
-        <ion-icon name="list" (click)="addMovieToList()"></ion-icon>
-        <ion-icon [ngClass]="{'favorited': favorite}" name="heart" (click)="ajoutFilmFavoris()"></ion-icon>
-        <ion-icon [ngClass]="{'selected': isOnWatchlist}" name="bookmark" (click)="ajoutFilmAVoir()"></ion-icon>
-      </div>
-
-      <ion-card>
-      
-            <ion-item>
-              <ion-button (click)="ajoutFilmFavoris()">
-                <p> Ajout Film Favoris </p>
-              </ion-button>
-            </ion-item>
-
-            <ion-item>
-              <ion-button (click)="deleteFilmFavoris()">
-                <p> Supprimer Film Favoris </p>
-              </ion-button>
-            </ion-item>
-
-            <ion-item>
-              <ion-button (click)="ajoutFilmAVoir()">
-                <p> Ajout Film à Voir </p>
-              </ion-button>
-            </ion-item>
-      
-      </ion-card>
+    <div class="movie-user-actions">
+    
+      <ion-icon name="list" (click)="message()"></ion-icon>
+    
+      <ion-icon *ngIf="getCompareFilmFavoris()" color="danger" [ngClass]="{'favorited': favorite}" name="heart"
+        (click)="deleteFilmFavoris()"></ion-icon>
+    
+      <ion-icon *ngIf="!getCompareFilmFavoris()" color="medium" [ngClass]="{'favorited': favorite}" name="heart"
+        (click)="ajoutFilmFavoris() ; deleteFilmAVoir()"></ion-icon>
+    
+      <ion-icon *ngIf="getCompareFilmEnvie()" color="warning" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+        (click)="deleteFilmAVoir()"></ion-icon>
+    
+      <ion-icon *ngIf="!getCompareFilmEnvie()" color="medium" [ngClass]="{'selected': isOnWatchlist}" name="bookmark"
+        (click)="ajoutFilmAVoir() ; deleteFilmFavoris()"></ion-icon>
+    
+    </div>
 
       <!-- <div class="movie-user-actions">
         <ion-icon name="list" (click)="addMovieToList()"></ion-icon>

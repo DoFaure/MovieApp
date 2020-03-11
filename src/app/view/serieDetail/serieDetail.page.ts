@@ -26,6 +26,9 @@ export class SerieDetailPage implements OnInit {
   similarSeries: Serie[] = [];
   rate: number = 0;
 
+  listeSerieFavoris: any;
+  listeSerieAVoir: any;
+
   constructor(
     private navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
@@ -39,6 +42,10 @@ export class SerieDetailPage implements OnInit {
       this.getSerieDetail();
       this.getSimilarSeries();
     }, 100);
+
+    this.getSerieFavoris()
+    this.getSerieAVoir();
+
   }
 
   navigateBack() {
@@ -64,23 +71,85 @@ export class SerieDetailPage implements OnInit {
   }
 
   ajoutSerieFavoris() {
-    console.log("Passage dans Serie Favoris");
+
     this.listeService.ajoutContenu(this.serieID, this.serie.name, this.serie.poster_path, "SerieFavoris");
   }
 
   ajoutSerieAVoir() {
-    console.log("Passage dans Serie A Voir");
+
     this.listeService.ajoutContenu(this.serieID, this.serie.name, this.serie.poster_path, "SerieVoir");
   }
 
   deleteSerieFavoris() {
-    console.log("Passage dans Supression Serie Favoris");
+
     this.listeService.delete(this.serieID, "SerieFavoris");
   }
 
   deleteSerieAVoir() {
-    console.log("Passage dans Supression Serie Favoris");
+
     this.listeService.delete(this.serieID, "SerieVoir");
   }
+
+  /* ok */
+  getSerieFavoris() {
+
+    this.listeService.getContenu("SerieFavoris").valueChanges().subscribe((values) => {
+      // If you want to push in values, however this may lead to duplicates
+      values.forEach((value) =>
+        this.listeSerieFavoris = value,
+
+      );
+
+      // If you want Moniteurs to be just the new data
+
+      this.listeSerieFavoris = values;
+    });
+  }
+
+  getSerieAVoir() {
+
+    this.listeService.getContenu("SerieVoir").valueChanges().subscribe((values) => {
+      // If you want to push in values, however this may lead to duplicates
+      values.forEach((value) =>
+        this.listeSerieAVoir = value,
+
+      );
+
+      this.listeSerieAVoir = values;
+
+    });
+  }
+
+  getCompareSerieFavoris(): boolean {
+
+    for (let element of this.listeSerieFavoris) {
+
+      if (this.serieID == element.id_coucou) {
+
+        return true;
+      }
+    }
+
+    return false;
+
+  }
+
+  getCompareSerieEnvie(): boolean {
+
+    for (let element of this.listeSerieAVoir) {
+
+      if (this.serieID == element.id_coucou) {
+        return true;
+      }
+    }
+
+    return false;
+
+  }
+
+  message() {
+    alert("Cette fonctionnalité n'est pas encore disponible");
+  }
+
 
 }
