@@ -8,6 +8,7 @@ import { Serie } from 'src/app/models/series/serie';
 import { MovieService } from "src/app/services/movie/movie.service";
 import { SerieService } from "src/app/services/serie/serie.service";
 import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { NoteService } from 'src/app/services/note.service' 
 
 
 @Component({
@@ -22,7 +23,7 @@ export class Tab3Page implements OnInit {
   listF : Array<Movie> = [];
   listS: Array<Serie> = [];
 
-  constructor(private serieService: SerieService, private movieService: MovieService) { }
+  constructor(private serieService: SerieService, private movieService: MovieService, private noteService: NoteService) { }
 
   ngOnInit(): void { }
 
@@ -37,6 +38,11 @@ export class Tab3Page implements OnInit {
       this.listS = serieResponse;
       this.isDataLoaded = true;
     });
+    this.listS.forEach(serie =>{
+      this.noteService.getNoteAverageSerie((serie.id).toString()).valueChanges().subscribe( item => { 
+        serie.vote_average = item.note_moyenne
+    })
+   });
     
   }
   
@@ -46,7 +52,14 @@ export class Tab3Page implements OnInit {
       this.listF = movieResponse;
       this.isDataLoaded = true;
     });
+    this.listF.forEach(movie =>{
+      this.noteService.getNoteAverageMovie((movie.id).toString()).valueChanges().subscribe( item => { 
+        movie.vote_average = item.note_moyenne
+    })
+   });
   }
+
+  
 
 }
 
