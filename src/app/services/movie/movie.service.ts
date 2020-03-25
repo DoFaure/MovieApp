@@ -7,7 +7,6 @@ import { map, catchError } from 'rxjs/operators';
 
 /* Models */
 import { Movie, MovieResponse } from 'src/app/models/movie';
-// import { TrailerResponse } from 'src/app/models/trailer';
 import { Cast, CreditResponse } from 'src/app/models/credit';
 
 @Injectable({
@@ -135,51 +134,4 @@ export class MovieService {
       })
     );
   }
-
-  getCategoryMovies(genderID: string, page: number): Observable<Movie[]> {
-    var queryParams: any = {
-      with_genres: genderID,
-      page: page,
-    }
-    let url = '/discover/movie';
-    return this.http.get(url, { params: queryParams }).pipe(
-      map((response: MovieResponse) => {
-        return response.results;
-      })
-    );
-  }
-
-//   getMovieTrailerURL(movieID: string): Observable<string> {
-//     //_IqFJLdV13o
-//     let url = '/movie/' + movieID + '/videos';
-//     return this.http.get(url).pipe(
-//       map((response: TrailerResponse) => {
-//         let trailerList = response.results.filter(x => { return x.site == "YouTube" });
-//         if (trailerList.length != 0) {
-//           let trailer = trailerList[0];
-//           let youtubeURL = 'https://www.youtube.com/watch?v=' + trailer.key;
-//           return youtubeURL;
-//         } else {
-//           return null;
-//         }
-
-//       })
-//     );
-//   }
-
-//   getAccountStateForMovie(movieID: string): Observable<MovieStates> {
-
-//     let url = '/movie/' + movieID + '/account_states';
-//     let sessionID = this.authService.getSessionID();
-
-//     let queryString: any = {
-//       session_id: sessionID
-//     }
-//     return this.http.get(url, { params: queryString }).pipe(
-//       map((response: MovieStates) => {
-//         return response;
-//       })
-//     );
-//   }
-
 }
