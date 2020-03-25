@@ -2,12 +2,9 @@ ion-back-button{
     color: purple !important;
 }
 
-////////////////////////////////////// Test
-
 .grey {
   background-color : #808080;
 }
-
 
 .red {
   background-color :#FF0000;
@@ -30,7 +27,7 @@ ion-back-button{
         height: 100%;
         position: relative;
         .movie-backdrop-image {
-            position: relative; //top: -3vw;
+            position: relative; 
             width: 100vw;
             height: 56vw;
             border-radius: 0;

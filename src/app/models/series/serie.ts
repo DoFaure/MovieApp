@@ -2,8 +2,7 @@ import { Genre } from "../genre";
 import { Created_Serie } from "./created_serie";
 import { Episode } from "./episode";
 import { Season } from "./season";
-import { Prod_Company_Serie } from "./prod_company_serie";
-import { Network_Serie } from "./network_serie";
+
 
 export interface SerieResponse {
     page: number;
