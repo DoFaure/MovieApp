@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 /*Models*/
 
 /*Services*/
 import { AuthenticateService } from 'src/app/services/authentication.service'
 import { AngularFireAuth } from '@angular/fire/auth'
-import { User } from 'src/app/models/user';
-
 
 @Component({
   selector: 'app-tabProfil',
