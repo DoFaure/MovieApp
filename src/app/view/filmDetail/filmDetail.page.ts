@@ -159,7 +159,6 @@ export class filmDetailPage implements OnInit {
   getFilmFavoris() {
 
     this.listeService.getContenu("FilmFavoris").valueChanges().subscribe((values) => {
-      // If you want to push in values, however this may lead to duplicates
       values.forEach((value) =>
         this.listeFilmFavoris = value,
 
@@ -174,13 +173,10 @@ export class filmDetailPage implements OnInit {
   getFilmAVoir() {
 
     this.listeService.getContenu("FilmVoir").valueChanges().subscribe((values) => {
-      // If you want to push in values, however this may lead to duplicates
       values.forEach((value) =>
         this.listeFilmAVoir = value,
 
       );
-
-      // If you want Moniteurs to be just the new data
 
       this.listeFilmAVoir = values;
 

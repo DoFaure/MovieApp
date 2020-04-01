@@ -18,7 +18,6 @@ export class MovieService {
   constructor(private http: HttpClient) {
   }
 
-
   getLatestMovies(pageNumber: number): Observable<Movie[]> {
     var queryParams = {
       language: "fr",
@@ -99,7 +98,6 @@ export class MovieService {
         console.log(err);
         return throwError("err");
       })
-      //catchError(err => of([]))
     );
   }
 

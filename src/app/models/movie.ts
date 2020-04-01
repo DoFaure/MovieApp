@@ -1,12 +1,5 @@
 import { Genre } from "./genre";
 
-export interface MovieResponse {
-  page: number;
-  results: Movie[];
-  total_results: number;
-  total_pages: number;
-}
-
 export interface Movie {
   adult: boolean;
   backdrop_path: string;
@@ -35,9 +28,9 @@ export interface Movie {
   vote_count: number;
 }
 
-export interface MovieStates {
-  favorite: boolean,
-  id: Number,
-  rated: any,
-  watchlist: boolean
-} 
+export interface MovieResponse {
+  page: number;
+  results: Movie[];
+  total_results: number;
+  total_pages: number;
+}

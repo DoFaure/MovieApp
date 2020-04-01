@@ -11,10 +11,10 @@ export class CustomErrorHandler implements ErrorHandler {
 	handleError(error: Error | HttpErrorResponse) {
 
 		if (error instanceof HttpErrorResponse) {
-			console.log("server error ", error);
+			console.log("Erreur serveur", error);
 
 		} else {
-			console.log("Client Error: ", error);
+			console.log("Erreur client :", error);
 		}
 		return error;
 	}
