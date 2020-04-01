@@ -22,7 +22,7 @@
           onError="this.src = '../assets/images/no-image-poster.png'" />
       </div>
 
-      <div class="movie-rating">
+      <div class="movie-rate">
         <span>{{rateAverage}}</span>
       </div>
     </div>
@@ -35,7 +35,7 @@
       </div>
 
       <div class="movie-info-type">
-        <div class="movie-runtime">
+        <div class="movie-duration">
           <ion-icon name="time"></ion-icon>
           <span>{{movie.runtime}} min</span>
         </div>
@@ -44,7 +44,7 @@
         </div>
       </div>
     
-      <div class="movie-user-actions">
+      <div class="movie-actions-list">
 
         <ion-icon name="list" (click)="message()"></ion-icon>
 
@@ -62,7 +62,7 @@
 
       </div>
       
-      <div class="second-movie-user-actions">
+      <div class="movie-action-rate">
 
         <div class="movie-rate">
           <ion-icon name="star" 
@@ -76,7 +76,7 @@
 
 
     <ion-card class="movie-sub-info-card">
-      <div class="overview">
+      <div class="synopsis">
         <div class=title>
           <span class="title">Synopsis</span>
         </div>
@@ -125,7 +125,7 @@
         <form class="form" name="commentForm"  #myForm="ngForm"  [formGroup]="validations_form" (ngSubmit)="sendComment(validations_form.value); myForm.reset()">
           <ion-list lines="none">
             <ion-item>
-              <ion-textarea text="text" formControlName="commentary" placeholder="Commente"></ion-textarea>
+              <ion-textarea text="text" formControlName="commentary" placeholder="Laissez votre commentaire ici"></ion-textarea>
                 <ion-button type="submit" >
                     <ion-icon name="md-add"></ion-icon>
                 </ion-button>

@@ -45,7 +45,7 @@ ion-back-button{
             }
         }
         
-        .movie-rating {
+        .movie-rate {
             position: absolute;
             right: 10px;
             height: 44px;
@@ -60,6 +60,7 @@ ion-back-button{
             bottom: 10px;
         }
     }
+
     .movie-info {
         
         .movie-title {
@@ -92,7 +93,7 @@ ion-back-button{
             font-size: 0.9em;
             color: #b1b1b1;
 
-            .movie-runtime {
+            .movie-duration {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -101,11 +102,9 @@ ion-back-button{
                     margin-right: 5px;
                 }
             }
-
-
         }
 
-        .movie-user-actions {
+        .movie-actions-list {
             width: 100%;
             height: 45px;
             display: flex;
@@ -132,7 +131,7 @@ ion-back-button{
             }
         }
 
-        .second-movie-user-actions {
+        .movie-action-rate {
             display: flex;
             padding: 5px 5px;            
             background-color: white;
@@ -164,7 +163,7 @@ ion-back-button{
             }
         }
 
-        .overview {
+        .synopsis {
             padding: 20px 20px 2px 20px;
 
             .title {
@@ -178,6 +177,7 @@ ion-back-button{
                 text-align: justify;
             }
         }
+
         .cast {
             padding: 2px 20px 10px 20px;
             .title {
@@ -234,8 +234,7 @@ ion-back-button{
                             color: #b1b1b1;
                         }
                     }
-                }
-                
+                }               
             }
         }
 
@@ -300,11 +299,9 @@ ion-back-button{
                                 height: 150px;
                             }
                         }
-
                     }
                 }
             }
         }
-
     }
 }

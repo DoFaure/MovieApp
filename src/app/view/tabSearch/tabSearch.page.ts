@@ -16,7 +16,7 @@ import { NoteService } from 'src/app/services/note.service'
   templateUrl: 'tabSearch.page.html',
   styleUrls: ['tabSearch.page.scss']
 })
-export class Tab3Page implements OnInit {
+export class TabSearchPage implements OnInit {
 
   isDataLoaded: boolean;
 

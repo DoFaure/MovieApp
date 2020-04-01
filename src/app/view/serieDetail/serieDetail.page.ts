@@ -137,18 +137,13 @@ export class SerieDetailPage implements OnInit {
     this.listeService.delete(this.serieID, "SerieVoir");
   }
 
-  /* ok */
   getSerieFavoris() {
 
     this.listeService.getContenu("SerieFavoris").valueChanges().subscribe((values) => {
-      // If you want to push in values, however this may lead to duplicates
       values.forEach((value) =>
         this.listeSerieFavoris = value,
 
       );
-
-      // If you want Moniteurs to be just the new data
-
       this.listeSerieFavoris = values;
     });
   }
@@ -156,7 +151,6 @@ export class SerieDetailPage implements OnInit {
   getSerieAVoir() {
 
     this.listeService.getContenu("SerieVoir").valueChanges().subscribe((values) => {
-      // If you want to push in values, however this may lead to duplicates
       values.forEach((value) =>
         this.listeSerieAVoir = value,
 

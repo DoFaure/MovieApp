@@ -67,7 +67,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tabSearch/tabSearch.module').then(m => m.Tab3PageModule)
+              import('../tabSearch/tabSearch.module').then(m => m.TabSearchPageModule)
           },
           {
             path: 'serie-detail/:serieID',
