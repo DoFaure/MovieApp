@@ -96,7 +96,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tabProfil/tabProfil.module').then(m => m.Tab5PageModule)
+              import('../tabProfil/tabProfil.module').then(m => m.TabProfilPageModule)
           }
         ]
       },

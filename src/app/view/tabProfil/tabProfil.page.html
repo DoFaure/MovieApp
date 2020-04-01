@@ -1,13 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Profil
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
-
   
+<div class="padding">
+
+    <div class="header">
+      <h2>{{nomUtilisateur}}</h2>
+
+
+    <div class="space-between">
+      
+    </div>
+
+    </div>
+    <div class="flex">
+      <div class="border-blue">
+        <div class="border-white">
+          <div class="img-box">
+            <img src="../../../assets/images/no-avatar.png">
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+  <div>
+    <ion-item>
+      <ion-label color = "">Email</ion-label>
+  {{email}}
+    </ion-item>
+  </div>
+  <ion-item>
+    <ion-label>Nom</ion-label>
+  {{nom}}
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Nom utilisateur</ion-label>
+    {{nomUtilisateur}}
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Prénom</ion-label>
+    {{prenom}}
+  </ion-item>
+
+  <br>
+  <ion-button fill="outline" shape="round" expand="block">Modifier Profil</ion-button>
+  <br>
+
+  <ion-button fill="outline" shape="round" expand="block" color="danger" (click)="logout()">Deconnexion</ion-button> 
+
+
+</div>
 
 </ion-content>
