@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database'
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database'
 import { resolve } from 'url';
  
 @Injectable()
 export class AuthenticateService {
+
+  userInformation : AngularFireObject<any>;
  
   constructor(private navCtrl : NavController, private afAuth : AngularFireAuth, private afDatabase : AngularFireDatabase){}
  
@@ -40,11 +42,13 @@ export class AuthenticateService {
   }
  
   logoutUser(){
+    console.log("Passage dans logoutUser de auth");
     return new Promise((resolve, reject) => {
       if(this.afAuth.auth.currentUser){
         this.afAuth.auth.signOut()
         .then(() => {
           console.log("LOG Out");
+          this.navCtrl.navigateForward('/login')
           resolve();
         }).catch((error) => {
           reject();
@@ -55,5 +59,10 @@ export class AuthenticateService {
  
   userDetails(){
     return this.afAuth.auth.currentUser;
+  }
+
+  getUserProfil(){
+    this.userInformation = this.afDatabase.object('users/'+ this.userDetails().uid);
+    return this.userInformation;
   }
 }
